@@ -3,9 +3,7 @@ import { AbsoluteFill, spring, useCurrentFrame, useVideoConfig, interpolate } fr
 import { ArrowUpRight } from "lucide-react";
 import { fontFamily } from "../lib/fonts";
 import { AnimatedText } from "../components/AnimatedText";
-import { getSentimentColor } from "../components/SemanticIcon";
-
-type Sentiment = "bullish" | "bearish" | "neutral";
+import { getSentimentColor, getSentimentGlow, COLORS, glowText, type Sentiment } from "../lib/colors";
 
 export const CTA: React.FC<{
   subtitle?: string;
@@ -15,71 +13,96 @@ export const CTA: React.FC<{
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const subtitleProgress = spring({
+  const subtitleSlide = spring({
     frame,
     fps,
-    config: { damping: 20, stiffness: 80 },
+    config: { damping: 18, stiffness: 90 },
   });
 
-  const pop = spring({
-    frame: frame - 15,
+  const buttonPop = spring({
+    frame: frame - 18,
     fps,
-    config: { damping: 10, stiffness: 120 },
+    config: { damping: 9, stiffness: 140, mass: 1.2 },
   });
 
-  const arrowNudge = interpolate(Math.sin((frame / fps) * 4), [-1, 1], [-4, 4]);
-  const glowRadius = interpolate(Math.sin((frame / fps) * 3), [-1, 1], [30, 60]);
+  const arrowNudge = interpolate(Math.sin((frame / fps) * 4), [-1, 1], [-5, 5]);
+  const pulseGlow = interpolate(Math.sin((frame / fps) * 3), [-1, 1], [40, 80]);
 
   const color = getSentimentColor(sentiment);
-  
-  // Make the button gradient fade from the sentiment color to a slightly darker shade
-  const colorDark = sentiment === "bullish" ? "#047857" : sentiment === "bearish" ? "#991b1b" : "#3b82f6";
+  const glow = getSentimentGlow(sentiment);
+
+  // Gradient from sentiment color to a darker/richer shade
+  const colorDark =
+    sentiment === "bullish" ? "#007700" :
+    sentiment === "bearish" ? "#8B0000" :
+    "#4B0082"; // Indigo for neutral/purple
 
   return (
     <AbsoluteFill
       style={{
         justifyContent: "center",
         alignItems: "center",
-        color: "white",
+        flexDirection: "column",
+        gap: 60,
+        color: COLORS.textPrimary,
         fontFamily,
       }}
     >
+      {/* Subtitle */}
       <div
         style={{
-          opacity: subtitleProgress,
-          transform: `translateY(${(1 - subtitleProgress) * 30}px)`,
-          marginBottom: 50,
+          opacity: subtitleSlide,
+          transform: `translateY(${(1 - subtitleSlide) * 40}px)`,
         }}
       >
         <AnimatedText
           text={subtitle}
-          fontSize={48}
+          fontSize={52}
           fontWeight={600}
-          color="#9ca3af"
+          color={COLORS.textSecondary}
           staggerDelay={3}
         />
       </div>
 
+      {/* CTA Button — premium bordered glow pill */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
           gap: 20,
-          background: `linear-gradient(135deg, ${color}, ${colorDark})`,
-          color: "#fff",
-          padding: "45px 90px",
-          borderRadius: 100,
-          fontSize: 68,
+          // Transparent fill — just the gradient border glow
+          background: `linear-gradient(135deg, ${color}22, ${colorDark}44)`,
+          color: COLORS.textPrimary,
+          padding: "50px 100px",
+          borderRadius: 120,
+          fontSize: 72,
           fontWeight: 900,
-          transform: `scale(${pop})`,
-          boxShadow: `0 0 ${glowRadius}px ${color}80, 0 20px 60px rgba(0, 0, 0, 0.4)`,
-          border: "2px solid rgba(255, 255, 255, 0.2)",
+          textTransform: "uppercase",
+          letterSpacing: "0.04em",
+          transform: `scale(${buttonPop})`,
+          boxShadow: `0 0 ${pulseGlow}px ${glow}, 0 0 ${pulseGlow * 1.5}px ${glow}, inset 0 0 30px ${color}10`,
+          border: `2px solid ${color}`,
+          textShadow: glowText(color, "soft"),
         }}
       >
         {buttonText}
-        <div style={{ transform: `translate(${arrowNudge}px, ${-arrowNudge}px)` }}>
-          <ArrowUpRight size={75} strokeWidth={3.5} />
+        <div style={{ transform: `translate(${arrowNudge}px, ${-arrowNudge}px)`, filter: `drop-shadow(0 0 10px ${color})` }}>
+          <ArrowUpRight size={80} strokeWidth={3} color={color} />
         </div>
+      </div>
+
+      {/* Subtle bottom tagline */}
+      <div
+        style={{
+          opacity: subtitleSlide * 0.5,
+          fontSize: 28,
+          color: COLORS.textMuted,
+          letterSpacing: "0.15em",
+          textTransform: "uppercase",
+          fontWeight: 600,
+        }}
+      >
+        Follow for more market insights
       </div>
     </AbsoluteFill>
   );

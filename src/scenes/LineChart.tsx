@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { evolvePath } from "@remotion/paths";
-import { getSentimentColor } from "../components/SemanticIcon";
+import { getSentimentColor, getSentimentGlow, COLORS } from "../lib/colors";
 import { fontFamily } from "../lib/fonts";
 
 type Sentiment = "bullish" | "bearish" | "neutral";
@@ -39,11 +39,10 @@ export const LineChart: React.FC<{
     durationInFrames: 60,
   });
 
-  // Use evolved path for animation
   const evolvedPathData = evolvePath(progress, path);
   const color = getSentimentColor(sentiment);
+  const glow = getSentimentGlow(sentiment);
 
-  // Intro for the container
   const containerSlide = spring({
     frame: frame - 10,
     fps,
@@ -55,7 +54,7 @@ export const LineChart: React.FC<{
       style={{
         justifyContent: "center",
         alignItems: "center",
-        color: "white",
+        color: COLORS.textPrimary,
         fontFamily,
       }}
     >
@@ -69,65 +68,113 @@ export const LineChart: React.FC<{
         }}
       >
         {title && (
-          <h1 style={{ fontSize: 72, fontWeight: 900, marginBottom: 50, color: "#fff" }}>
+          <h1 style={{
+            fontSize: 72,
+            fontWeight: 900,
+            marginBottom: 50,
+            color: COLORS.textPrimary,
+            letterSpacing: "-0.02em",
+            textTransform: "uppercase",
+            textShadow: `0 0 30px ${glow}`,
+          }}>
             {title}
           </h1>
         )}
 
-        {/* The Generative Graph */}
         <div style={{ position: "relative", width: svgWidth, height: svgHeight }}>
-          {/* Subtle Grid behind graph */}
-          <div style={{ position: "absolute", top: "50%", width: "100%", height: 2, background: "rgba(255,255,255,0.1)" }} />
-          <div style={{ position: "absolute", top: "25%", width: "100%", height: 2, background: "rgba(255,255,255,0.05)" }} />
-          <div style={{ position: "absolute", top: "75%", width: "100%", height: 2, background: "rgba(255,255,255,0.05)" }} />
+          {/* Premium grid - ultra subtle */}
+          {[25, 50, 75].map(pct => (
+            <div key={pct} style={{
+              position: "absolute",
+              top: `${pct}%`,
+              width: "100%",
+              height: 1,
+              background: `rgba(255,255,255,${pct === 50 ? 0.08 : 0.04})`,
+            }} />
+          ))}
+          {/* Vertical grid lines */}
+          {dataPoints.map((_, i) => (
+            <div key={i} style={{
+              position: "absolute",
+              left: `${(i / (dataPoints.length - 1)) * 100}%`,
+              top: 0,
+              width: 1,
+              height: "100%",
+              background: "rgba(255,255,255,0.03)",
+            }} />
+          ))}
 
-          <svg
-            width={svgWidth}
-            height={svgHeight}
-            viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-            style={{ overflow: "visible" }}
-          >
-            {/* Draw the adaptive line */}
+          <svg width={svgWidth} height={svgHeight} viewBox={`0 0 ${svgWidth} ${svgHeight}`} style={{ overflow: "visible" }}>
+            {/* Soft diffuse outer glow layer */}
             <path
               d={evolvedPathData}
               fill="none"
               stroke={color}
-              strokeWidth={14}
+              strokeWidth={30}
+              strokeLinecap="round"
+              opacity={0.12}
+              style={{ filter: `blur(8px)` }}
+            />
+            {/* Main crisp line */}
+            <path
+              d={evolvedPathData}
+              fill="none"
+              stroke={color}
+              strokeWidth={6}
               strokeLinecap="round"
               strokeLinejoin="round"
-              style={{
-                filter: `drop-shadow(0 20px 40px ${color}80)`,
-              }}
+              style={{ filter: `drop-shadow(0 0 15px ${color}) drop-shadow(0 0 30px ${glow})` }}
             />
           </svg>
 
-          {/* Draw data point markers after graph has drawn */}
+          {/* White data point markers */}
           {points.map((p, i) => {
             const indexProgress = i / (points.length - 1);
             const showPoint = progress >= indexProgress;
-            
+
             const pop = spring({
-               frame: frame - (40 + (i * 5)),
-               fps,
-               config: { damping: 12, stiffness: 200 }
+              frame: frame - (40 + (i * 6)),
+              fps,
+              config: { damping: 10, stiffness: 220 }
             });
 
+            const value = dataPoints[i];
+
             return (
-              <div
-                key={i}
-                style={{
-                  position: "absolute",
-                  left: p.x - 15,
-                  top: p.y - 15,
-                  width: 30,
-                  height: 30,
-                  backgroundColor: "#fff",
-                  border: `6px solid ${color}`,
-                  borderRadius: "50%",
-                  transform: `scale(${showPoint ? pop : 0})`,
-                  boxShadow: `0 0 20px ${color}`,
-                }}
-              />
+              <div key={i}>
+                {/* Point circle */}
+                <div
+                  style={{
+                    position: "absolute",
+                    left: p.x - 12,
+                    top: p.y - 12,
+                    width: 24,
+                    height: 24,
+                    backgroundColor: COLORS.textPrimary,
+                    border: `4px solid ${color}`,
+                    borderRadius: "50%",
+                    transform: `scale(${showPoint ? pop : 0})`,
+                    boxShadow: `0 0 20px ${glow}, 0 0 6px ${color}`,
+                  }}
+                />
+                {/* Value label above point */}
+                {showPoint && (
+                  <div style={{
+                    position: "absolute",
+                    left: p.x - 50,
+                    top: p.y - 55,
+                    width: 100,
+                    textAlign: "center",
+                    fontSize: 28,
+                    fontWeight: 700,
+                    color: COLORS.textPrimary,
+                    opacity: pop,
+                    textShadow: `0 0 10px ${glow}`,
+                  }}>
+                    {value}
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>

@@ -7,7 +7,7 @@ export interface DerivedMetadata {
 }
 
 const KEYWORD_MAP: Record<string, string> = {
-  // Finance
+  // Finance & Crypto
   bank: "landmark",
   money: "banknote",
   cash: "banknote",
@@ -17,11 +17,31 @@ const KEYWORD_MAP: Record<string, string> = {
   savings: "wallet",
   crypto: "bitcoin",
   bitcoin: "bitcoin",
+  xrp: "coins",
+  ethereum: "circle-dot",
+  nft: "image",
+  defi: "network",
   market: "line-chart",
   stock: "trending-up",
   trading: "bar-chart-3",
+  etf: "briefcase",
+  fund: "briefcase",
+  portfolio: "pie-chart",
+  compound: "repeat",
+  interest: "percent",
+  profit: "trending-up",
+  revenue: "dollar-sign",
+  loss: "trending-down",
+
+  // Institutions & Regulation
+  sec: "shield",
+  approve: "check-circle",
+  regulation: "scale",
+  government: "building",
+  institution: "building-2",
+  blackrock: "building-2",
   
-  // Sentiments/Actions
+  // Sentiments & States
   fear: "alert-triangle",
   scared: "frown",
   panic: "zap",
@@ -30,17 +50,29 @@ const KEYWORD_MAP: Record<string, string> = {
   growth: "sprout",
   fall: "trending-down",
   crash: "flame",
+  drop: "arrow-down",
   caution: "alert-octagon",
   tip: "lightbulb",
   idea: "lightbulb",
   check: "check-circle",
   security: "shield-check",
+  safe: "shield-check",
+  risk: "triangle-alert",
+  protect: "shield",
+  rule: "list-checks",
   
-  // General
+  // General / Context
   news: "newspaper",
   question: "help-circle",
   think: "brain",
   ready: "flag",
+  data: "database",
+  global: "globe",
+  world: "globe",
+  history: "clock",
+  future: "telescope",
+  community: "users",
+  people: "users",
 };
 
 export const analyzeSentiment = (text: string | undefined): Sentiment => {

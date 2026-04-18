@@ -17,7 +17,9 @@ import { CTA } from "./scenes/CTA";
 import { useDelayRender } from "remotion";
 import { SceneData } from "./types/schema";
 import { LineChart } from "./scenes/LineChart";
+import { GeometricShatter } from "./components/GeometricShatter";
 import { analyzeSentiment, analyzeIcon, getSceneSeed, deriveLayout } from "./lib/analyzer";
+import { COLORS } from "./lib/colors";
 
 export type FinanceVideoProps = {
   scenes: SceneData[];
@@ -66,9 +68,9 @@ export const FinanceVideo: React.FC<FinanceVideoProps> = ({
       {/* Global audio layer */}
       <VideoAudio />
 
-      {/* Ambient 3D background coin — subtle, not distracting */}
-      <AbsoluteFill style={{ opacity: 0.06, pointerEvents: "none" }}>
-        <CryptoCoin3D size={600} glowColor="rgba(100, 200, 255, 0.3)" />
+      {/* Ambient 3D background coin — Electric Purple brand color */}
+      <AbsoluteFill style={{ opacity: 0.05, pointerEvents: "none" }}>
+        <CryptoCoin3D size={700} glowColor={COLORS.purpleGlow} />
       </AbsoluteFill>
 
       <TransitionSeries>
@@ -126,38 +128,45 @@ export const FinanceVideo: React.FC<FinanceVideoProps> = ({
 
           const elements = [];
 
-          // If it's not the first scene, we add a transition BEFORE the sequence
+          // Transitions — sentiment-aware
           if (index > 0) {
-            // For variety, let's use a light leak before calculation/linechart, and slide/fade for others
-            if (scene.type === "calculation" || scene.type === "linechart") {
-               elements.push(
-                 <TransitionSeries.Overlay key={`overlay-${index}`} durationInFrames={Math.round(1 * fps)}>
-                   <LightLeak seed={index} hueShift={sentiment === "bearish" ? 0 : 190} />
-                 </TransitionSeries.Overlay>
-               );
+            if (scene.type === "linechart" || scene.type === "calculation") {
+              // Light leak: red hue for bearish, purple (270deg) for neutral/bullish
+              const hueShift = sentiment === "bearish" ? 0 : sentiment === "bullish" ? 120 : 270;
+              elements.push(
+                <TransitionSeries.Overlay key={`overlay-${index}`} durationInFrames={Math.round(0.8 * fps)}>
+                  <LightLeak seed={index * 7} hueShift={hueShift} />
+                </TransitionSeries.Overlay>
+              );
             } else if (scene.type === "steps") {
-               elements.push(
-                 <TransitionSeries.Transition
-                   key={`trans-${index}`}
-                   presentation={slide({ direction: "from-bottom" })}
-                   timing={linearTiming({ durationInFrames: transitionDuration })}
-                 />
-               );
+              elements.push(
+                <TransitionSeries.Transition
+                  key={`trans-${index}`}
+                  presentation={slide({ direction: "from-bottom" })}
+                  timing={linearTiming({ durationInFrames: transitionDuration })}
+                />
+              );
             } else {
-               elements.push(
-                 <TransitionSeries.Transition
-                   key={`trans-${index}`}
-                   presentation={fade()}
-                   timing={linearTiming({ durationInFrames: transitionDuration })}
-                 />
-               );
+              elements.push(
+                <TransitionSeries.Transition
+                  key={`trans-${index}`}
+                  presentation={fade()}
+                  timing={linearTiming({ durationInFrames: transitionDuration })}
+                />
+              );
             }
           }
 
-          // Add the actual sequence
+          // Add the actual sequence — add shatter overlay on bearish scenes
           elements.push(
             <TransitionSeries.Sequence key={`seq-${index}`} durationInFrames={scene.durationInFrames}>
               {SceneComponent}
+              {/* Bearish crash shatter — plays first 45 frames of the scene */}
+              {sentiment === "bearish" && (
+                <AbsoluteFill style={{ pointerEvents: "none" }}>
+                  <GeometricShatter color={COLORS.bearish} shardCount={20} duration={45} />
+                </AbsoluteFill>
+              )}
             </TransitionSeries.Sequence>
           );
 
