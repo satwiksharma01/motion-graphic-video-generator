@@ -1,4 +1,4 @@
-# 🌙 Noctis: Adaptive Finance Video Engine
+#  Adaptive Finance Video Engine
 
 Noctis is a high-performance, **Generative Video Engine** built on [Remotion](https://www.remotion.dev/). It transforms raw financial scripts into premium, data-driven motion graphics for social media (Instagram Reels, TikTok, YouTube Shorts) automatically.
 
