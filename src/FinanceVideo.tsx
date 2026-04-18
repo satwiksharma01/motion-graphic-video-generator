@@ -1,0 +1,161 @@
+import React, { useState, useEffect, useCallback } from "react";
+import { staticFile, useVideoConfig } from "remotion";
+import { TransitionSeries, linearTiming } from "@remotion/transitions";
+import { slide } from "@remotion/transitions/slide";
+import { fade } from "@remotion/transitions/fade";
+import { LightLeak } from "@remotion/light-leaks";
+import type { Caption } from "@remotion/captions";
+
+import { GridBackground } from "./components/GridBackground";
+import { Subtitles } from "./components/Subtitles";
+import { Hook } from "./scenes/Hook";
+import { Calculation } from "./scenes/Calculation";
+import { Steps } from "./scenes/Steps";
+import { CTA } from "./scenes/CTA";
+import { useDelayRender } from "remotion";
+import { SceneData } from "./types/schema";
+import { LineChart } from "./scenes/LineChart";
+import { analyzeSentiment, analyzeIcon, getSceneSeed, deriveLayout } from "./lib/analyzer";
+
+export type FinanceVideoProps = {
+  scenes: SceneData[];
+  captions?: Caption[];
+};
+
+export const FinanceVideo: React.FC<FinanceVideoProps> = ({
+  scenes,
+  captions: initialCaptions,
+}) => {
+  const { fps } = useVideoConfig();
+  const [captions, setCaptions] = useState<Caption[] | null>(initialCaptions || null);
+  const { delayRender, continueRender } = useDelayRender();
+  const [handle] = useState(() => delayRender());
+
+  const fetchCaptions = useCallback(async () => {
+    if (initialCaptions) {
+      continueRender(handle);
+      return;
+    }
+    try {
+      const response = await fetch(staticFile("subtitles.json"));
+      if (!response.ok) {
+        throw new Error("Could not find subtitles.json");
+      }
+      const data = await response.json();
+      setCaptions(data);
+    } catch (e) {
+      console.warn("Could not load subtitles", e);
+      setCaptions([]);
+    } finally {
+      continueRender(handle);
+    }
+  }, [continueRender, handle, initialCaptions]);
+
+  useEffect(() => {
+    fetchCaptions();
+  }, [fetchCaptions]);
+
+  if (captions === null) return null;
+
+  const transitionDuration = Math.round(0.5 * fps);
+
+  return (
+    <GridBackground>
+      <TransitionSeries>
+        {scenes.map((scene, index) => {
+          // Derive values if missing
+          const textToAnalyze = scene.spokenText || (scene.type === "hook" ? scene.title : "");
+          const seed = getSceneSeed(textToAnalyze + index);
+          
+          const sentiment = scene.sentiment || analyzeSentiment(textToAnalyze);
+          const iconName = scene.iconName || analyzeIcon(textToAnalyze);
+          const layoutVariant = scene.layoutVariant || deriveLayout(seed);
+
+          let SceneComponent;
+
+          if (scene.type === "hook") {
+            SceneComponent = (
+              <Hook 
+                title={scene.title} 
+                sentiment={sentiment} 
+                iconName={iconName} 
+                layoutVariant={layoutVariant}
+              />
+            );
+          } else if (scene.type === "calculation") {
+            SceneComponent = <Calculation amount={scene.amount} result={scene.result} />;
+          } else if (scene.type === "linechart") {
+            SceneComponent = (
+              <LineChart 
+                dataPoints={scene.dataPoints} 
+                sentiment={sentiment} 
+                title={scene.title} 
+              />
+            );
+          } else if (scene.type === "steps") {
+            SceneComponent = (
+              <Steps 
+                title={scene.title} 
+                items={scene.items} 
+                sentiment={sentiment} 
+                iconName={iconName} 
+                layoutVariant={layoutVariant}
+              />
+            );
+          } else if (scene.type === "cta") {
+            SceneComponent = (
+              <CTA 
+                subtitle={scene.subtitle} 
+                buttonText={scene.buttonText} 
+                sentiment={sentiment} 
+              />
+            );
+          } else {
+            return null;
+          }
+
+          const elements = [];
+
+          // If it's not the first scene, we add a transition BEFORE the sequence
+          if (index > 0) {
+            // For variety, let's use a light leak before calculation/linechart, and slide/fade for others
+            if (scene.type === "calculation" || scene.type === "linechart") {
+               elements.push(
+                 <TransitionSeries.Overlay key={`overlay-${index}`} durationInFrames={Math.round(1 * fps)}>
+                   <LightLeak seed={index} hueShift={sentiment === "bearish" ? 0 : 190} />
+                 </TransitionSeries.Overlay>
+               );
+            } else if (scene.type === "steps") {
+               elements.push(
+                 <TransitionSeries.Transition
+                   key={`trans-${index}`}
+                   presentation={slide({ direction: "from-bottom" })}
+                   timing={linearTiming({ durationInFrames: transitionDuration })}
+                 />
+               );
+            } else {
+               elements.push(
+                 <TransitionSeries.Transition
+                   key={`trans-${index}`}
+                   presentation={fade()}
+                   timing={linearTiming({ durationInFrames: transitionDuration })}
+                 />
+               );
+            }
+          }
+
+          // Add the actual sequence
+          elements.push(
+            <TransitionSeries.Sequence key={`seq-${index}`} durationInFrames={scene.durationInFrames}>
+              {SceneComponent}
+            </TransitionSeries.Sequence>
+          );
+
+          return elements;
+        })}
+      </TransitionSeries>
+
+      <Subtitles captions={captions} />
+    </GridBackground>
+  );
+};

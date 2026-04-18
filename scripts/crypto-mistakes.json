@@ -1,0 +1,31 @@
+{
+  "videoId": "crypto-mistakes",
+  "scenes": [
+    {
+      "type": "hook",
+      "durationInFrames": 120,
+      "title": "Top 3 Crypto Mistakes"
+    },
+    {
+      "type": "steps",
+      "durationInFrames": 150,
+      "title": "Avoid These:",
+      "items": [
+        "FOMO Buying at the top",
+        "Keeping funds on exchange",
+        "Not doing your own research"
+      ]
+    },
+    {
+      "type": "hook",
+      "durationInFrames": 90,
+      "title": "Stay safe out there"
+    },
+    {
+      "type": "cta",
+      "durationInFrames": 120,
+      "subtitle": "Want more tips?",
+      "buttonText": "Subscribe"
+    }
+  ]
+}

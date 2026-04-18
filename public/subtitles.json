@@ -1,0 +1,513 @@
+[
+  {
+    "text": "Did",
+    "startMs": 0,
+    "endMs": 400,
+    "timestampMs": 0,
+    "confidence": 1
+  },
+  {
+    "text": " you",
+    "startMs": 400,
+    "endMs": 800,
+    "timestampMs": 400,
+    "confidence": 1
+  },
+  {
+    "text": " know",
+    "startMs": 800,
+    "endMs": 1200,
+    "timestampMs": 800,
+    "confidence": 1
+  },
+  {
+    "text": " compound",
+    "startMs": 1200,
+    "endMs": 1600,
+    "timestampMs": 1200,
+    "confidence": 1
+  },
+  {
+    "text": " interest",
+    "startMs": 1600,
+    "endMs": 2000,
+    "timestampMs": 1600,
+    "confidence": 1
+  },
+  {
+    "text": " can",
+    "startMs": 2000,
+    "endMs": 2400,
+    "timestampMs": 2000,
+    "confidence": 1
+  },
+  {
+    "text": " make",
+    "startMs": 2400,
+    "endMs": 2800,
+    "timestampMs": 2400,
+    "confidence": 1
+  },
+  {
+    "text": " you",
+    "startMs": 2800,
+    "endMs": 3200,
+    "timestampMs": 2800,
+    "confidence": 1
+  },
+  {
+    "text": " rich?",
+    "startMs": 3200,
+    "endMs": 3600,
+    "timestampMs": 3200,
+    "confidence": 1
+  },
+  {
+    "text": " Albert",
+    "startMs": 3600,
+    "endMs": 4000,
+    "timestampMs": 3600,
+    "confidence": 1
+  },
+  {
+    "text": " Einstein",
+    "startMs": 4000,
+    "endMs": 4400,
+    "timestampMs": 4000,
+    "confidence": 1
+  },
+  {
+    "text": " called",
+    "startMs": 4400,
+    "endMs": 4800,
+    "timestampMs": 4400,
+    "confidence": 1
+  },
+  {
+    "text": " it",
+    "startMs": 4800,
+    "endMs": 5200,
+    "timestampMs": 4800,
+    "confidence": 1
+  },
+  {
+    "text": " the",
+    "startMs": 5200,
+    "endMs": 5600,
+    "timestampMs": 5200,
+    "confidence": 1
+  },
+  {
+    "text": " eighth",
+    "startMs": 5600,
+    "endMs": 6000,
+    "timestampMs": 5600,
+    "confidence": 1
+  },
+  {
+    "text": " wonder",
+    "startMs": 6000,
+    "endMs": 6400,
+    "timestampMs": 6000,
+    "confidence": 1
+  },
+  {
+    "text": " of",
+    "startMs": 6400,
+    "endMs": 6800,
+    "timestampMs": 6400,
+    "confidence": 1
+  },
+  {
+    "text": " the",
+    "startMs": 6800,
+    "endMs": 7200,
+    "timestampMs": 6800,
+    "confidence": 1
+  },
+  {
+    "text": " world.",
+    "startMs": 7200,
+    "endMs": 7600,
+    "timestampMs": 7200,
+    "confidence": 1
+  },
+  {
+    "text": " Let's",
+    "startMs": 7600,
+    "endMs": 8000,
+    "timestampMs": 7600,
+    "confidence": 1
+  },
+  {
+    "text": " see",
+    "startMs": 8000,
+    "endMs": 8400,
+    "timestampMs": 8000,
+    "confidence": 1
+  },
+  {
+    "text": " how",
+    "startMs": 8400,
+    "endMs": 8800,
+    "timestampMs": 8400,
+    "confidence": 1
+  },
+  {
+    "text": " it",
+    "startMs": 8800,
+    "endMs": 9200,
+    "timestampMs": 8800,
+    "confidence": 1
+  },
+  {
+    "text": " works",
+    "startMs": 9200,
+    "endMs": 9600,
+    "timestampMs": 9200,
+    "confidence": 1
+  },
+  {
+    "text": " with",
+    "startMs": 9600,
+    "endMs": 10000,
+    "timestampMs": 9600,
+    "confidence": 1
+  },
+  {
+    "text": " an",
+    "startMs": 10000,
+    "endMs": 10400,
+    "timestampMs": 10000,
+    "confidence": 1
+  },
+  {
+    "text": " example.",
+    "startMs": 10400,
+    "endMs": 10800,
+    "timestampMs": 10400,
+    "confidence": 1
+  },
+  {
+    "text": " Ten",
+    "startMs": 10800,
+    "endMs": 11200,
+    "timestampMs": 10800,
+    "confidence": 1
+  },
+  {
+    "text": " thousand",
+    "startMs": 11200,
+    "endMs": 11600,
+    "timestampMs": 11200,
+    "confidence": 1
+  },
+  {
+    "text": " dollars",
+    "startMs": 11600,
+    "endMs": 12000,
+    "timestampMs": 11600,
+    "confidence": 1
+  },
+  {
+    "text": " invested",
+    "startMs": 12000,
+    "endMs": 12400,
+    "timestampMs": 12000,
+    "confidence": 1
+  },
+  {
+    "text": " at",
+    "startMs": 12400,
+    "endMs": 12800,
+    "timestampMs": 12400,
+    "confidence": 1
+  },
+  {
+    "text": " seven",
+    "startMs": 12800,
+    "endMs": 13200,
+    "timestampMs": 12800,
+    "confidence": 1
+  },
+  {
+    "text": " percent",
+    "startMs": 13200,
+    "endMs": 13600,
+    "timestampMs": 13200,
+    "confidence": 1
+  },
+  {
+    "text": " for",
+    "startMs": 13600,
+    "endMs": 14000,
+    "timestampMs": 13600,
+    "confidence": 1
+  },
+  {
+    "text": " thirty",
+    "startMs": 14000,
+    "endMs": 14400,
+    "timestampMs": 14000,
+    "confidence": 1
+  },
+  {
+    "text": " years...",
+    "startMs": 14400,
+    "endMs": 14800,
+    "timestampMs": 14400,
+    "confidence": 1
+  },
+  {
+    "text": " Seventy",
+    "startMs": 14800,
+    "endMs": 15200,
+    "timestampMs": 14800,
+    "confidence": 1
+  },
+  {
+    "text": " six",
+    "startMs": 15200,
+    "endMs": 15600,
+    "timestampMs": 15200,
+    "confidence": 1
+  },
+  {
+    "text": " thousand",
+    "startMs": 15600,
+    "endMs": 16000,
+    "timestampMs": 15600,
+    "confidence": 1
+  },
+  {
+    "text": " one",
+    "startMs": 16000,
+    "endMs": 16400,
+    "timestampMs": 16000,
+    "confidence": 1
+  },
+  {
+    "text": " hundred",
+    "startMs": 16400,
+    "endMs": 16800,
+    "timestampMs": 16400,
+    "confidence": 1
+  },
+  {
+    "text": " and",
+    "startMs": 16800,
+    "endMs": 17200,
+    "timestampMs": 16800,
+    "confidence": 1
+  },
+  {
+    "text": " twenty",
+    "startMs": 17200,
+    "endMs": 17600,
+    "timestampMs": 17200,
+    "confidence": 1
+  },
+  {
+    "text": " two",
+    "startMs": 17600,
+    "endMs": 18000,
+    "timestampMs": 17600,
+    "confidence": 1
+  },
+  {
+    "text": " dollars.",
+    "startMs": 18000,
+    "endMs": 18400,
+    "timestampMs": 18000,
+    "confidence": 1
+  },
+  {
+    "text": " Power",
+    "startMs": 18400,
+    "endMs": 18800,
+    "timestampMs": 18400,
+    "confidence": 1
+  },
+  {
+    "text": " of",
+    "startMs": 18800,
+    "endMs": 19200,
+    "timestampMs": 18800,
+    "confidence": 1
+  },
+  {
+    "text": " starting",
+    "startMs": 19200,
+    "endMs": 19600,
+    "timestampMs": 19200,
+    "confidence": 1
+  },
+  {
+    "text": " early!",
+    "startMs": 19600,
+    "endMs": 20000,
+    "timestampMs": 19600,
+    "confidence": 1
+  },
+  {
+    "text": " Start",
+    "startMs": 20000,
+    "endMs": 20400,
+    "timestampMs": 20000,
+    "confidence": 1
+  },
+  {
+    "text": " investing",
+    "startMs": 20400,
+    "endMs": 20800,
+    "timestampMs": 20400,
+    "confidence": 1
+  },
+  {
+    "text": " early.",
+    "startMs": 20800,
+    "endMs": 21200,
+    "timestampMs": 20800,
+    "confidence": 1
+  },
+  {
+    "text": " Choose",
+    "startMs": 21200,
+    "endMs": 21600,
+    "timestampMs": 21200,
+    "confidence": 1
+  },
+  {
+    "text": " low",
+    "startMs": 21600,
+    "endMs": 22000,
+    "timestampMs": 21600,
+    "confidence": 1
+  },
+  {
+    "text": " cost",
+    "startMs": 22000,
+    "endMs": 22400,
+    "timestampMs": 22000,
+    "confidence": 1
+  },
+  {
+    "text": " index",
+    "startMs": 22400,
+    "endMs": 22800,
+    "timestampMs": 22400,
+    "confidence": 1
+  },
+  {
+    "text": " funds.",
+    "startMs": 22800,
+    "endMs": 23200,
+    "timestampMs": 22800,
+    "confidence": 1
+  },
+  {
+    "text": " Contribute",
+    "startMs": 23200,
+    "endMs": 23600,
+    "timestampMs": 23200,
+    "confidence": 1
+  },
+  {
+    "text": " consistently.",
+    "startMs": 23600,
+    "endMs": 24000,
+    "timestampMs": 23600,
+    "confidence": 1
+  },
+  {
+    "text": " Let",
+    "startMs": 24000,
+    "endMs": 24400,
+    "timestampMs": 24000,
+    "confidence": 1
+  },
+  {
+    "text": " compound",
+    "startMs": 24400,
+    "endMs": 24800,
+    "timestampMs": 24400,
+    "confidence": 1
+  },
+  {
+    "text": " interest",
+    "startMs": 24800,
+    "endMs": 25200,
+    "timestampMs": 24800,
+    "confidence": 1
+  },
+  {
+    "text": " work.",
+    "startMs": 25200,
+    "endMs": 25600,
+    "timestampMs": 25200,
+    "confidence": 1
+  },
+  {
+    "text": " Start",
+    "startMs": 25600,
+    "endMs": 26000,
+    "timestampMs": 25600,
+    "confidence": 1
+  },
+  {
+    "text": " investing",
+    "startMs": 26000,
+    "endMs": 26400,
+    "timestampMs": 26000,
+    "confidence": 1
+  },
+  {
+    "text": " today!",
+    "startMs": 26400,
+    "endMs": 26800,
+    "timestampMs": 26400,
+    "confidence": 1
+  },
+  {
+    "text": " Visit",
+    "startMs": 26800,
+    "endMs": 27200,
+    "timestampMs": 26800,
+    "confidence": 1
+  },
+  {
+    "text": " our",
+    "startMs": 27200,
+    "endMs": 27600,
+    "timestampMs": 27200,
+    "confidence": 1
+  },
+  {
+    "text": " website",
+    "startMs": 27600,
+    "endMs": 28000,
+    "timestampMs": 27600,
+    "confidence": 1
+  },
+  {
+    "text": " for",
+    "startMs": 28000,
+    "endMs": 28400,
+    "timestampMs": 28000,
+    "confidence": 1
+  },
+  {
+    "text": " more",
+    "startMs": 28400,
+    "endMs": 28800,
+    "timestampMs": 28400,
+    "confidence": 1
+  },
+  {
+    "text": " tips.",
+    "startMs": 28800,
+    "endMs": 29200,
+    "timestampMs": 28800,
+    "confidence": 1
+  }
+]

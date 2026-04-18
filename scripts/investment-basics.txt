@@ -1,0 +1,17 @@
+Topic: Building Wealth Through Compound Interest
+Script:
+Did you know compound interest can make you rich?
+Albert Einstein called it the eighth wonder of the world.
+Let's see how it works with an example.
+Statistics:
+$10,000 invested at 7% for 30 years: $76,122
+Same amount at 10%: $174,494
+Power of starting early!
+ChartData:
+[10000, 10700, 11449, 12250, 13108]
+Steps:
+Start investing early
+Choose low-cost index funds
+Contribute consistently
+Let compound interest work
+CTA: Start investing today! Visit our website for more tips.
