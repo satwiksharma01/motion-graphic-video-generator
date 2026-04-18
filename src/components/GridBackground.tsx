@@ -1,16 +1,52 @@
 import React from "react";
-import { AbsoluteFill, useVideoConfig } from "remotion";
-import { GlowOrb } from "./GlowOrb";
+import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
+import { COLORS } from "../lib/colors";
 
 export const GridBackground: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { width, height } = useVideoConfig();
-  const gridSize = 60;
+  const frame = useCurrentFrame();
+  
+  // Very slow breathing animation for the volumetric light
+  const breathScale = 1 + Math.sin(frame * 0.015) * 0.08;
+  const breathOpacity = 0.8 + Math.sin(frame * 0.02) * 0.2;
 
   return (
-    <AbsoluteFill style={{ backgroundColor: "#010C24" }}>
-      {/* Grid Pattern */}
+    <AbsoluteFill style={{ backgroundColor: COLORS.background }}>
+      
+      {/* Volumetric light source 1 — Electric Purple (top-left) */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-15%",
+          left: "-10%",
+          width: "65%",
+          height: "65%",
+          borderRadius: "50%",
+          background: "radial-gradient(ellipse at center, rgba(138, 43, 226, 0.18) 0%, transparent 70%)",
+          transform: `scale(${breathScale})`,
+          opacity: breathOpacity,
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Volumetric light source 2 — deep purple (bottom-right) */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "-20%",
+          right: "-15%",
+          width: "70%",
+          height: "70%",
+          borderRadius: "50%",
+          background: "radial-gradient(ellipse at center, rgba(160, 32, 240, 0.12) 0%, transparent 70%)",
+          transform: `scale(${1 + Math.sin(frame * 0.018 + 1) * 0.06})`,
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Ultra-subtle grid — dot pattern only, barely visible */}
       <svg
         width={width}
         height={height}
@@ -18,34 +54,28 @@ export const GridBackground: React.FC<{ children: React.ReactNode }> = ({
           position: "absolute",
           top: 0,
           left: 0,
-          opacity: 0.3,
+          opacity: 0.12,
+          pointerEvents: "none",
         }}
       >
         <defs>
           <pattern
-            id="grid"
-            width={gridSize}
-            height={gridSize}
+            id="noctis-grid"
+            width={80}
+            height={80}
             patternUnits="userSpaceOnUse"
           >
-            <circle cx={gridSize / 2} cy={gridSize / 2} r={1.5} fill="#4dadea" />
-            <path
-              d={`M ${gridSize} 0 L 0 0 0 ${gridSize}`}
-              fill="none"
-              stroke="#0f305c"
-              strokeWidth="0.5"
-            />
+            {/* Single pixel intersection dots only — ultra minimal */}
+            <circle cx={80} cy={80} r={1} fill="#8A2BE2" />
+            <circle cx={0} cy={80} r={1} fill="#8A2BE2" />
+            <circle cx={80} cy={0} r={1} fill="#8A2BE2" />
+            <circle cx={0} cy={0} r={1} fill="#8A2BE2" />
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#grid)" />
+        <rect width="100%" height="100%" fill="url(#noctis-grid)" />
       </svg>
 
-      {/* Ambient Glow Orbs */}
-      <GlowOrb color="rgba(6, 182, 212, 0.12)" size={600} x={20} y={30} speed={0.25} delay={0} />
-      <GlowOrb color="rgba(99, 102, 241, 0.10)" size={500} x={75} y={60} speed={0.35} delay={50} />
-      <GlowOrb color="rgba(168, 85, 247, 0.08)" size={450} x={50} y={85} speed={0.2} delay={100} />
-
-      {/* Content Layer */}
+      {/* Content */}
       {children}
     </AbsoluteFill>
   );
