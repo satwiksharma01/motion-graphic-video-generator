@@ -95,7 +95,7 @@ export const FinanceVideo: React.FC<FinanceVideoProps> = ({
               />
             );
           } else if (scene.type === "calculation") {
-            SceneComponent = <Calculation amount={scene.amount} result={scene.result} />;
+            SceneComponent = <Calculation amount={scene.amount} result={scene.result} sentiment={sentiment} />;
           } else if (scene.type === "linechart") {
             SceneComponent = (
               <LineChart 
