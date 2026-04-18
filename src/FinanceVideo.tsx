@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { staticFile, useVideoConfig } from "remotion";
+import { AbsoluteFill, staticFile, useVideoConfig } from "remotion";
 import { TransitionSeries, linearTiming } from "@remotion/transitions";
 import { slide } from "@remotion/transitions/slide";
 import { fade } from "@remotion/transitions/fade";
@@ -8,6 +8,8 @@ import type { Caption } from "@remotion/captions";
 
 import { GridBackground } from "./components/GridBackground";
 import { Subtitles } from "./components/Subtitles";
+import { VideoAudio } from "./components/VideoAudio";
+import { CryptoCoin3D } from "./components/CryptoCoin3D";
 import { Hook } from "./scenes/Hook";
 import { Calculation } from "./scenes/Calculation";
 import { Steps } from "./scenes/Steps";
@@ -61,6 +63,14 @@ export const FinanceVideo: React.FC<FinanceVideoProps> = ({
 
   return (
     <GridBackground>
+      {/* Global audio layer */}
+      <VideoAudio />
+
+      {/* Ambient 3D background coin — subtle, not distracting */}
+      <AbsoluteFill style={{ opacity: 0.06, pointerEvents: "none" }}>
+        <CryptoCoin3D size={600} glowColor="rgba(100, 200, 255, 0.3)" />
+      </AbsoluteFill>
+
       <TransitionSeries>
         {scenes.map((scene, index) => {
           // Derive values if missing
