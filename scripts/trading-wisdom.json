@@ -1,0 +1,36 @@
+{
+  "videoId": "trading-wisdom",
+  "scenes": [
+    {
+      "type": "hook",
+      "title": "Master the 2% Rule",
+      "durationInFrames": 120,
+      "spokenText": "Ever wondered how top traders stay in the game forever? It all comes down to one single rule: Never risk more than two percent of your capital on a single trade."
+    },
+    {
+      "type": "linechart",
+      "title": "Edge of Compounding",
+      "dataPoints": [1000, 1050, 1120, 1280, 1550],
+      "durationInFrames": 180,
+      "spokenText": "By limiting your downside, you allow the power of math to work for you. Even a string of losses won't wipe you out, but a few wins will surge your wealth upward."
+    },
+    {
+      "type": "steps",
+      "title": "Your Daily Checklist",
+      "items": [
+        "Check your account balance",
+        "Calculate position size",
+        "Set an airtight stop loss"
+      ],
+      "durationInFrames": 240,
+      "spokenText": "To use this today: always check your balance first. Then, calculate your size based on that two percent limit, and never enter a trade without a hard stop loss already in place."
+    },
+    {
+      "type": "cta",
+      "subtitle": "Protect your account",
+      "buttonText": "Start Smart",
+      "durationInFrames": 180,
+      "spokenText": "Successful trading isn't about making a million overnight. It's about protecting what you have so you can dominate tomorrow. Start smart today."
+    }
+  ]
+}

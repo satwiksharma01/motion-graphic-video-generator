@@ -1,0 +1,10 @@
+{
+  "scenes": [
+    {
+      "type": "hook",
+      "title": "Debug Scene",
+      "durationInFrames": 60,
+      "spokenText": "Testing banking system."
+    }
+  ]
+}
