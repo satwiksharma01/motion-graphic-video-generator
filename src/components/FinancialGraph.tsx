@@ -1,8 +1,12 @@
 import React, { useMemo } from "react";
 import { useCurrentFrame, useVideoConfig, interpolate, Easing } from "remotion";
 import { evolvePath } from "@remotion/paths";
+import { COLORS } from "../lib/colors";
 
-export const FinancialGraph: React.FC<{ data: number[] }> = ({ data }) => {
+export const FinancialGraph: React.FC<{ data: number[]; color?: string }> = ({ 
+  data, 
+  color = COLORS.purple 
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -12,9 +16,8 @@ export const FinancialGraph: React.FC<{ data: number[] }> = ({ data }) => {
   };
 
   const { pathObj, width, height } = useMemo(() => {
-    const width = 800;
-    const height = 400;
-    // adding some padding
+    const width = 1000;
+    const height = 500;
     const minVal = Math.min(...data) * 0.95;
     const maxVal = Math.max(...data) * 1.05;
     const range = maxVal - minVal;
@@ -26,28 +29,70 @@ export const FinancialGraph: React.FC<{ data: number[] }> = ({ data }) => {
     return { pathObj: generateLinePath(points), width, height };
   }, [data]);
 
-  // Animate the line over 2 seconds, starting at frame 5
-  const progress = interpolate(frame, [5, 5 + 2 * fps], [0, 1], {
+  const progress = interpolate(frame, [10, 10 + 2 * fps], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
-    easing: Easing.out(Easing.quad),
+    easing: Easing.out(Easing.cubic),
   });
 
   const { strokeDasharray, strokeDashoffset } = evolvePath(progress, pathObj);
 
   return (
-    <svg width={width} height={height} style={{ overflow: "visible" }}>
+    <svg width={width} height={height} style={{ overflow: "visible", opacity: 0.8 }}>
+      {/* Background horizontal grid lines */}
+      {[0, 0.25, 0.5, 0.75, 1].map((p) => (
+        <line
+          key={p}
+          x1={0}
+          y1={height * p}
+          x2={width}
+          y2={height * p}
+          stroke={color}
+          strokeWidth={1}
+          opacity={0.05}
+        />
+      ))}
+
+      {/* Deep diffuse glow layer */}
       <path
         d={pathObj}
         fill="none"
-        stroke="#06b6d4" // Cyan glowing graph
-        strokeWidth={14}
+        stroke={color}
+        strokeWidth={35}
+        strokeDasharray={strokeDasharray}
+        strokeDashoffset={strokeDashoffset}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity={0.15}
+        style={{ filter: "blur(20px)" }}
+      />
+
+      {/* Secondary bright glow layer */}
+      <path
+        d={pathObj}
+        fill="none"
+        stroke={color}
+        strokeWidth={12}
+        strokeDasharray={strokeDasharray}
+        strokeDashoffset={strokeDashoffset}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity={0.4}
+        style={{ filter: "blur(6px)" }}
+      />
+
+      {/* Main crisp line */}
+      <path
+        d={pathObj}
+        fill="none"
+        stroke={color}
+        strokeWidth={5}
         strokeDasharray={strokeDasharray}
         strokeDashoffset={strokeDashoffset}
         strokeLinecap="round"
         strokeLinejoin="round"
         style={{
-          filter: "drop-shadow(0px 0px 20px rgba(6, 182, 212, 0.6))",
+          filter: `drop-shadow(0 0 10px ${color})`,
         }}
       />
     </svg>

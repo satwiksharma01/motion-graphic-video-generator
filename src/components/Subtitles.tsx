@@ -1,10 +1,8 @@
-import React, { useMemo } from "react";
-import { AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig } from "remotion";
-import { createTikTokStyleCaptions, TikTokPage } from "@remotion/captions";
-import type { Caption } from "@remotion/captions";
+import { COLORS } from "../lib/colors";
+import { fontFamily } from "../lib/fonts";
 
-const HIGHLIGHT_COLOR = "#06b6d4"; // Subtitle glow/cyan
-const SWITCH_CAPTIONS_EVERY_MS = 2000;
+const HIGHLIGHT_COLOR = COLORS.purple; 
+const SWITCH_CAPTIONS_EVERY_MS = 1800; // Slightly faster for "fast & decisive" feel
 
 const CaptionPage: React.FC<{ page: TikTokPage }> = ({ page }) => {
   const frame = useCurrentFrame();
@@ -17,20 +15,23 @@ const CaptionPage: React.FC<{ page: TikTokPage }> = ({ page }) => {
     <AbsoluteFill
       style={{
         display: "flex",
-        justifyContent: "flex-end", // Push to bottom
+        justifyContent: "flex-end",
         alignItems: "center",
-        paddingBottom: "15%",
+        paddingBottom: "12%",
       }}
     >
       <div
         style={{
-          fontSize: 65,
-          fontWeight: "800",
-          fontFamily: "sans-serif",
+          fontSize: 72,
+          fontWeight: "900",
+          fontFamily,
           textAlign: "center",
-          maxWidth: "80%",
-          lineHeight: "1.2",
-          textShadow: "0px 4px 10px rgba(0, 0, 0, 0.5)",
+          maxWidth: "85%",
+          lineHeight: "1.1",
+          textTransform: "uppercase",
+          // Hierarchy sizing - captions are large and impactful
+          color: COLORS.textPrimary,
+          textShadow: "0px 0px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6)",
         }}
       >
         {page.tokens.map((token) => {
@@ -42,8 +43,10 @@ const CaptionPage: React.FC<{ page: TikTokPage }> = ({ page }) => {
               key={token.fromMs}
               style={{
                 color: isActive ? HIGHLIGHT_COLOR : "white",
-                transition: "color 0.1s ease-out",
+                transition: "color 0.05s ease-out",
                 whiteSpace: "pre-wrap",
+                // Glow on active word
+                textShadow: isActive ? `0 0 30px ${HIGHLIGHT_COLOR}80` : "none",
               }}
             >
               {token.text}
