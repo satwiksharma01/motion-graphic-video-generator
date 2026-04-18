@@ -1,0 +1,20 @@
+NOCTIS ENGINE - USER TO-DO LIST
+-------------------------------
+
+Here are the manual steps you need to take later to complete the premium feel of the videos:
+
+1. [ ] AUDIO ASSETS: 
+   - `src/components/VideoAudio.tsx` currently returns null (safe mode) to avoid render crashes.
+   - When you have your audio files, place them in the `public/` folder:
+       - public/bg-music.mp3   → looping background music
+       - public/hit.mp3       → transition hit sound effect
+       - public/whoosh.mp3    → whoosh sound effect 
+   - Then open `VideoAudio.tsx` and uncomment the `<Audio>` blocks.
+   - Each Audio block already has the correct `staticFile()` path configured.
+
+2. [ ] CUSTOM ICONS (Optional):
+   - We are using `lucide-react` for currently dynamic semantic icons (which works well).
+   - If you want the exact branded logos (like the XRP, BTC, SEC logos mentioned in your text file), you will need to add those `.svg` files into `src/assets/` and update `src/components/CryptoCoin3D.tsx` to reference them instead of the generic Lucide coin.
+
+3. [ ] CUSTOM FONTS:
+   - Ensure the Google Fonts loaded in `src/lib/fonts.ts` (currently 'Inter') match your brand style. If you want Montserrat or Lato as mentioned in your guide, you can change the import there.

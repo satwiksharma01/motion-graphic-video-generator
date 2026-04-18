@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill } from "remotion";
-import { AnimatedText } from "../components/AnimatedText";
-import { SemanticIcon } from "../components/SemanticIcon";
+import { ImpactText } from "../components/ImpactText";
+import { SemanticIcon, getSentimentColor } from "../components/SemanticIcon";
 import { fontFamily } from "../lib/fonts";
 
 type Sentiment = "bullish" | "bearish" | "neutral";
@@ -12,9 +12,9 @@ export const Hook: React.FC<{
   iconName?: string;
   layoutVariant?: "centered" | "split" | "bottom";
 }> = ({ title, sentiment = "neutral", iconName, layoutVariant = "centered" }) => {
-  // Determine flex direction and alignment based on layout
   const isSplit = layoutVariant === "split";
   const isBottom = layoutVariant === "bottom";
+  const color = getSentimentColor(sentiment);
 
   return (
     <AbsoluteFill
@@ -35,15 +35,12 @@ export const Hook: React.FC<{
         </div>
       )}
 
-      {/* Word-by-word animated title */}
-      <div style={{ maxWidth: isSplit ? "600px" : "100%", textAlign: isSplit ? "left" : "center" }}>
-        <AnimatedText
+      {/* Impact title - bouncy, glowing */}
+      <div style={{ maxWidth: isSplit ? "600px" : "85%", textAlign: isSplit ? "left" : "center" }}>
+        <ImpactText
           text={title}
-          fontSize={72}
-          fontWeight={800}
-          staggerDelay={5}
-          textAlign={isSplit ? "left" : "center"}
-          startDelay={iconName ? 20 : 5}
+          glowColor={`${color}99`}
+          delay={iconName ? 20 : 5}
         />
       </div>
     </AbsoluteFill>

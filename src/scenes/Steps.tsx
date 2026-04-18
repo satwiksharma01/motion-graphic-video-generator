@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill, spring, useCurrentFrame, useVideoConfig, interpolate } from "remotion";
 import { ChevronRight } from "lucide-react";
 import { fontFamily } from "../lib/fonts";
-import { AnimatedText } from "../components/AnimatedText";
+import { ImpactText } from "../components/ImpactText";
 import { SemanticIcon, getSentimentColor } from "../components/SemanticIcon";
 
 type Sentiment = "bullish" | "bearish" | "neutral";
@@ -45,17 +45,16 @@ export const Steps: React.FC<{
         transform: isSplit ? "translateX(-40px)" : "none" 
       }}>
         {iconName && (
-          <div style={{ transform: `scale(${titleProgress})` }}>
+          <div style={{ transform: `scale(${titleProgress})`, flexShrink: 0 }}>
              <SemanticIcon iconName={iconName} sentiment={sentiment} size={isSplit ? 80 : 60} />
           </div>
         )}
         <div>
-          <AnimatedText
+          {/* Impact bounce title */}
+          <ImpactText
             text={title}
-            fontSize={isSplit ? 84 : 78}
-            fontWeight={900}
-            textAlign="left"
-            staggerDelay={4}
+            glowColor={`${color}99`}
+            delay={5}
           />
           {/* Animated underline */}
           <div
