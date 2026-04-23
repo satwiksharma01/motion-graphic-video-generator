@@ -17,7 +17,12 @@ import { CTA } from "./scenes/CTA";
 import { useDelayRender } from "remotion";
 import { SceneData } from "./types/schema";
 import { LineChart } from "./scenes/LineChart";
+import { Comparison } from "./scenes/Comparison";
+import { Formula } from "./scenes/Formula";
 import { GeometricShatter } from "./components/GeometricShatter";
+import { GlossaryOverlay } from "./components/GlossaryOverlay";
+import { LowerThirds } from "./components/LowerThirds";
+import { ProgressTracker } from "./components/ProgressTracker";
 import { analyzeSentiment, analyzeIcon, getSceneSeed, deriveLayout } from "./lib/analyzer";
 import { COLORS } from "./lib/colors";
 
@@ -122,6 +127,22 @@ export const FinanceVideo: React.FC<FinanceVideoProps> = ({
                 sentiment={sentiment} 
               />
             );
+          } else if (scene.type === "comparison") {
+            SceneComponent = (
+              <Comparison 
+                title={scene.title}
+                itemA={scene.itemA}
+                itemB={scene.itemB}
+              />
+            );
+          } else if (scene.type === "formula") {
+            SceneComponent = (
+              <Formula 
+                title={scene.title}
+                equation={scene.equation}
+                variables={scene.variables}
+              />
+            );
           } else {
             return null;
           }
@@ -167,6 +188,15 @@ export const FinanceVideo: React.FC<FinanceVideoProps> = ({
                   <GeometricShatter color={COLORS.bearish} shardCount={20} duration={45} />
                 </AbsoluteFill>
               )}
+              {/* Overlays */}
+              {scene.glossaryTerm && scene.glossaryDefinition && (
+                <GlossaryOverlay term={scene.glossaryTerm} definition={scene.glossaryDefinition} />
+              )}
+              {scene.lowerThirdText && scene.lowerThirdStatValue !== undefined && (
+                <LowerThirds title={scene.lowerThirdText} value={scene.lowerThirdStatValue} />
+              )}
+              {/* Progress Tracker (per scene relative tracking) */}
+              <ProgressTracker currentIndex={index} total={scenes.length} />
             </TransitionSeries.Sequence>
           );
 

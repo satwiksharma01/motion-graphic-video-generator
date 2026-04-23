@@ -1,0 +1,33 @@
+[
+  {
+    "type": "comparison",
+    "durationInFrames": 120,
+    "title": "Protocol Wars",
+    "itemA": {
+      "label": "Proof of Work",
+      "value": "Hash",
+      "description": "High Energy"
+    },
+    "itemB": {
+      "label": "Proof of Stake",
+      "value": "Yield",
+      "description": "Capital Bound"
+    },
+    "sentiment": "neutral",
+    "glossaryTerm": "Consensus",
+    "glossaryDefinition": "The mechanism used to agree on the state of the network."
+  },
+  {
+    "type": "formula",
+    "durationInFrames": 120,
+    "title": "Impermanent Loss",
+    "equation": "IL = 2\\sqrt{r} / (1+r) - 1",
+    "variables": {
+      "IL": "Impermanent Loss %",
+      "r": "Price Ratio Change"
+    },
+    "sentiment": "bearish",
+    "lowerThirdText": "DeFi Risk",
+    "lowerThirdStatValue": "High"
+  }
+]

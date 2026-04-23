@@ -1,3 +1,7 @@
+import React, { useMemo } from "react";
+import { AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig } from "remotion";
+import { createTikTokStyleCaptions, TikTokPage } from "@remotion/captions";
+import type { Caption } from "@remotion/captions";
 import { COLORS } from "../lib/colors";
 import { fontFamily } from "../lib/fonts";
 
