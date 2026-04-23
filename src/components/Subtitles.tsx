@@ -21,19 +21,19 @@ const CaptionPage: React.FC<{ page: TikTokPage }> = ({ page }) => {
         display: "flex",
         justifyContent: "flex-end",
         alignItems: "center",
-        paddingBottom: "12%",
+        paddingBottom: "8%",
       }}
     >
       <div
         style={{
-          fontSize: 72,
-          fontWeight: "900",
+          fontSize: 45,
+          fontWeight: "800",
           fontFamily,
           textAlign: "center",
-          maxWidth: "85%",
-          lineHeight: "1.1",
+          maxWidth: "80%",
+          lineHeight: "1.2",
           textTransform: "uppercase",
-          // Hierarchy sizing - captions are large and impactful
+          letterSpacing: "-0.01em",
           color: COLORS.textPrimary,
           textShadow: "0px 0px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6)",
         }}

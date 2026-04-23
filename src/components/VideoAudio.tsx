@@ -14,14 +14,14 @@ export const VideoAudio: React.FC<{ mood?: Sentiment }> = ({ mood = "neutral" })
   // Uncomment the blocks below once you have your audio files ready:
 
   // --- BACKGROUND MUSIC (Mood Aware) ---
-  // If bullish: High energy, fast bpm synthwave.
-  // If bearish: Dark, pulsing, tense ambient.
-  // If neutral: Steady, corporate tech background.
+  // If bullish: Calm, uplifting ambient (e.g., compound growth).
+  // If bearish: Low-end tension, not aggressive.
+  // If neutral: Steady, educational lofi/ambient.
   /*
   const bgMusicMap: Record<Sentiment, string> = {
-    bullish: "bg-bullish-synth.mp3",
-    bearish: "bg-bearish-pulse.mp3",
-    neutral: "bg-neutral-tech.mp3",
+    bullish: "bg-calm-growth.mp3",
+    bearish: "bg-tension-pad.mp3",
+    neutral: "bg-edu-focus.mp3",
   };
 
   return (

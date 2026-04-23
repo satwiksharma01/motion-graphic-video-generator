@@ -2,6 +2,7 @@ export type BaseScene = {
   durationInFrames: number;
   spokenText?: string;
   sentiment?: "bullish" | "bearish" | "neutral";
+  intent?: "educational" | "dramatic";
   iconName?: string;
   layoutVariant?: "centered" | "split" | "bottom";
   

@@ -9,30 +9,29 @@ export const ImpactText: React.FC<{
   delay?: number;
   fontSize?: number;
   sentiment?: Sentiment;
-}> = ({ text, glowColor = COLORS.purple, delay = 0, fontSize = 110, sentiment }) => {
+  mode?: "impact" | "calm";
+}> = ({ text, glowColor = COLORS.purple, delay = 0, fontSize = 110, sentiment, mode = "calm" }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Stage 1: Overshoot snap bounce (very high stiffness)
+  // Stage 1: Overshoot snap bounce (very high stiffness) or Calm fade-in
   const scaleBig = spring({
     frame: frame - delay,
     fps,
-    config: {
-      damping: 8,   // Extreme bounce
-      stiffness: 180,
-      mass: 1.2,
-    },
-    from: 0,
+    config: mode === "impact" 
+      ? { damping: 8, stiffness: 180, mass: 1.2 } 
+      : { damping: 14, stiffness: 100, mass: 1 },
+    from: mode === "impact" ? 0 : 0.8,
     to: 1,
   });
 
   // Stage 2: White flash on impact, fades to normal
-  const flashOpacity = interpolate(
+  const flashOpacity = mode === "impact" ? interpolate(
     frame - delay,
     [0, 3, 12],
     [1, 0.8, 0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  ) : 0;
 
   // Stage 3: Fade in text
   const opacity = interpolate(frame - delay, [0, 8], [0, 1], {
