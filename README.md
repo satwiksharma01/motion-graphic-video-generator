@@ -48,8 +48,8 @@ The engine enforces a strict compositional model (1080x1920) to ensure zero UI c
 
 ### Installation
 ```bash
-git clone https://github.com/crude-tech/video.git
-cd video
+git clone https://github.com/satwiksharma01/motion-graphic-video-generator.git
+cd motion-graphic-video-generator
 npm install
 ```
 
