@@ -28,16 +28,20 @@ export const Steps: React.FC<{
   const color = getSentimentColor(sentiment);
 
   return (
-    <AbsoluteFill
-      style={{
-        justifyContent: "center",
-        paddingLeft: isSplit ? "15%" : "12%",
-        paddingRight: "8%",
-        color: "white",
-        fontFamily,
-      }}
-    >
-      <div style={{ 
+    <AbsoluteFill style={{ justifyContent: "center", alignItems: "center" }}>
+      <div
+        style={{
+          width: "85%",
+          height: "60vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          paddingLeft: isSplit ? "10%" : "5%",
+          color: "white",
+          fontFamily,
+        }}
+      >
+        <div style={{
         marginBottom: 80, 
         display: "flex", 
         alignItems: "center", 
@@ -110,6 +114,7 @@ export const Steps: React.FC<{
           </div>
         );
       })}
+      </div>
     </AbsoluteFill>
   );
 };

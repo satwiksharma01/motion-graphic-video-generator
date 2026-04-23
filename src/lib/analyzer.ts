@@ -58,6 +58,20 @@ const KEYWORD_MAP: Record<string, string> = {
   bridge: "git-merge",
   wallet: "wallet",
 
+  // Educational Finance
+  compound: "repeat",
+  diversification: "pie-chart",
+  assets: "briefcase",
+  equity: "scale",
+  index: "list",
+  bond: "scroll",
+  curriculum: "book-open",
+  learn: "graduation-cap",
+  study: "book",
+  interest: "percent",
+  theory: "brain",
+  strategy: "compass",
+
   // Institutions & Regulation
   sec: "shield",
   approve: "check-circle",

@@ -1,0 +1,82 @@
+{
+  "scenes": [
+    {
+      "type": "hook",
+      "durationInFrames": 90,
+      "title": "Forget armies.\nPower today looks like this.",
+      "sentiment": "neutral",
+      "iconName": "shield-alert",
+      "spokenText": "Forget armies. Power today looks like this."
+    },
+    {
+      "type": "graphiclist",
+      "durationInFrames": 360,
+      "title": "Data Centers",
+      "items": [
+        { "label": "Server Nodes", "icon": "server" },
+        { "label": "Secure Perimeter", "icon": "lock" },
+        { "label": "Critical Assets", "icon": "database" }
+      ],
+      "sentiment": "neutral",
+      "spokenText": "Rows of servers. Hidden inside windowless buildings. These are data centers. And they’re becoming the most important assets in the world."
+    },
+    {
+      "type": "graphiclist",
+      "durationInFrames": 300,
+      "title": "The Global Backbone",
+      "items": [
+        { "label": "Artificial Intelligence", "icon": "cpu" },
+        { "label": "Global Finance", "icon": "banknote" },
+        { "label": "National Security", "icon": "shield-check" }
+      ],
+      "sentiment": "bullish",
+      "spokenText": "Because everything runs on them: AI. Finance. Cloud. Even national security."
+    },
+    {
+      "type": "hook",
+      "durationInFrames": 300,
+      "title": "If these buildings stop...\nSystems pause.",
+      "sentiment": "bearish",
+      "intent": "educational",
+      "spokenText": "If these buildings stop… it’s not just websites going down. Entire systems pause.",
+      "iconName": "alert-triangle"
+    },
+    {
+      "type": "graphiclist",
+      "durationInFrames": 300,
+      "title": "Strategic Selection",
+      "items": [
+        { "label": "Energy Grids", "icon": "zap" },
+        { "label": "Water Access", "icon": "droplet" },
+        { "label": "State Control", "icon": "fingerprint" }
+      ],
+      "sentiment": "neutral",
+      "spokenText": "That’s why countries are racing to build them. Near power grids. Near water. Near government control."
+    },
+    {
+      "type": "comparison",
+      "durationInFrames": 240,
+      "title": "Geopolitics of Compute",
+      "itemA": {
+        "label": "Old Power",
+        "value": "Oil",
+        "description": "Fossil Fuel"
+      },
+      "itemB": {
+        "label": "New Power",
+        "value": "Compute",
+        "description": "Digital Fuel"
+      },
+      "sentiment": "bullish",
+      "spokenText": "This isn’t just tech anymore. It’s geopolitics. Compute is the new oil."
+    },
+    {
+      "type": "cta",
+      "durationInFrames": 150,
+      "subtitle": "The countries that control compute...\nShape the future.",
+      "buttonText": "Join the Evolution",
+      "sentiment": "bullish",
+      "spokenText": "And the countries that control it… don’t just run data. They shape the future."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "scenes": [
+    {
+      "type": "barchart",
+      "durationInFrames": 150,
+      "title": "Sector Losses",
+      "dataPoints": [
+        { "label": "Tech", "value": 30 },
+        { "label": "Finance", "value": 15 },
+        { "label": "Retail", "value": 45 }
+      ],
+      "sentiment": "bearish",
+      "intent": "educational",
+      "spokenText": "Bear markets happen when prices fall 20 percent or more. Here are the leading loss sectors.",
+      "glossaryTerm": "Bear Market",
+      "glossaryDefinition": "A prolonged period of price declines, typically 20% or more from recent highs."
+    }
+  ]
+}

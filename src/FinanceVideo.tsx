@@ -9,14 +9,15 @@ import type { Caption } from "@remotion/captions";
 import { GridBackground } from "./components/GridBackground";
 import { Subtitles } from "./components/Subtitles";
 import { VideoAudio } from "./components/VideoAudio";
-import { CryptoCoin3D } from "./components/CryptoCoin3D";
+import { AbstractGridBackground } from "./components/AbstractGridBackground";
 import { Hook } from "./scenes/Hook";
 import { Calculation } from "./scenes/Calculation";
 import { Steps } from "./scenes/Steps";
 import { CTA } from "./scenes/CTA";
 import { useDelayRender } from "remotion";
-import { SceneData } from "./types/schema";
 import { LineChart } from "./scenes/LineChart";
+import { BarChart } from "./scenes/BarChart";
+import { GraphicList } from "./scenes/GraphicList";
 import { Comparison } from "./scenes/Comparison";
 import { Formula } from "./scenes/Formula";
 import { GeometricShatter } from "./components/GeometricShatter";
@@ -73,10 +74,8 @@ export const FinanceVideo: React.FC<FinanceVideoProps> = ({
       {/* Global audio layer */}
       <VideoAudio />
 
-      {/* Ambient 3D background coin — Electric Purple brand color */}
-      <AbsoluteFill style={{ opacity: 0.05, pointerEvents: "none" }}>
-        <CryptoCoin3D size={700} glowColor={COLORS.purpleGlow} />
-      </AbsoluteFill>
+      {/* Educational Ambient Background */}
+      <AbstractGridBackground />
 
       <TransitionSeries>
         {scenes.map((scene, index) => {
@@ -87,6 +86,7 @@ export const FinanceVideo: React.FC<FinanceVideoProps> = ({
           const sentiment = scene.sentiment || analyzeSentiment(textToAnalyze);
           const iconName = scene.iconName || analyzeIcon(textToAnalyze);
           const layoutVariant = scene.layoutVariant || deriveLayout(seed);
+          const intent = scene.intent || "educational";
 
           let SceneComponent;
 
@@ -105,6 +105,22 @@ export const FinanceVideo: React.FC<FinanceVideoProps> = ({
             SceneComponent = (
               <LineChart 
                 dataPoints={scene.dataPoints} 
+                sentiment={sentiment} 
+                title={scene.title} 
+              />
+            );
+          } else if (scene.type === "barchart") {
+            SceneComponent = (
+              <BarChart 
+                dataPoints={scene.dataPoints} 
+                sentiment={sentiment} 
+                title={scene.title} 
+              />
+            );
+          } else if (scene.type === "graphiclist") {
+            SceneComponent = (
+              <GraphicList 
+                items={scene.items} 
                 sentiment={sentiment} 
                 title={scene.title} 
               />
@@ -183,7 +199,7 @@ export const FinanceVideo: React.FC<FinanceVideoProps> = ({
             <TransitionSeries.Sequence key={`seq-${index}`} durationInFrames={scene.durationInFrames}>
               {SceneComponent}
               {/* Bearish crash shatter — plays first 45 frames of the scene */}
-              {sentiment === "bearish" && (
+              {sentiment === "bearish" && intent !== "educational" && (
                 <AbsoluteFill style={{ pointerEvents: "none" }}>
                   <GeometricShatter color={COLORS.bearish} shardCount={20} duration={45} />
                 </AbsoluteFill>

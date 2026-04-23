@@ -1,0 +1,81 @@
+{
+  "scenes": [
+    {
+      "type": "hook",
+      "durationInFrames": 90,
+      "title": "Forget armies.\nPower today looks like this.",
+      "sentiment": "neutral",
+      "spokenText": "Forget armies. Power today looks like this."
+    },
+    {
+      "type": "steps",
+      "durationInFrames": 240,
+      "title": "Data Centers",
+      "items": [
+        "Rows of servers",
+        "Windowless buildings",
+        "Most important global assets"
+      ],
+      "sentiment": "neutral",
+      "spokenText": "Rows of servers. Hidden inside windowless buildings. These are data centers. And they’re becoming the most important assets in the world."
+    },
+    {
+      "type": "steps",
+      "durationInFrames": 300,
+      "title": "Everything Runs on Them",
+      "items": [
+        "AI Ecosystems",
+        "Global Finance",
+        "Cloud Infrastructure",
+        "National Security"
+      ],
+      "sentiment": "bullish",
+      "spokenText": "Because everything runs on them: AI. Finance. Cloud. Even national security."
+    },
+    {
+      "type": "hook",
+      "durationInFrames": 300,
+      "title": "If these buildings stop...\nEntire systems pause.",
+      "sentiment": "bearish",
+      "spokenText": "If these buildings stop… it’s not just websites going down. Entire systems pause.",
+      "iconName": "alert-triangle"
+    },
+    {
+      "type": "steps",
+      "durationInFrames": 300,
+      "title": "The Strategic Race",
+      "items": [
+        "Near power grids",
+        "Near water supply",
+        "Near government control"
+      ],
+      "sentiment": "neutral",
+      "spokenText": "That’s why countries are racing to build them. Near power grids. Near water. Near government control."
+    },
+    {
+      "type": "comparison",
+      "durationInFrames": 300,
+      "title": "Compute Is The New Oil",
+      "itemA": {
+        "label": "20th Century",
+        "value": "Oil",
+        "description": "Fossil Fuel Power"
+      },
+      "itemB": {
+        "label": "21st Century",
+        "value": "Data",
+        "description": "Geopolitical Tech"
+      },
+      "sentiment": "bullish",
+      "spokenText": "This isn’t just tech anymore. It’s geopolitics. Compute is the new oil."
+    },
+    {
+      "type": "cta",
+      "durationInFrames": 150,
+      "subtitle": "The countries that control it don't just run data...\nThey shape the future.",
+      "buttonText": "Control the Compute",
+      "sentiment": "neutral",
+      "spokenText": "And the countries that control it… don’t just run data. They shape the future."
+    }
+  ]
+}

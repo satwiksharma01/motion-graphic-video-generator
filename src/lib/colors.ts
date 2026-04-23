@@ -7,37 +7,37 @@
 
 // ─── Core Palette ────────────────────────────────────────────────────────────
 export const COLORS = {
-  // Backgrounds
-  background: "#000000",       // Pure deep black — maximum contrast
-  backgroundSoft: "#080808",   // Barely-off-black for layering
+  // Backgrounds - Trustworthy Slate Navy
+  background: "#0B0F19",       
+  backgroundSoft: "#111827",   
 
   // Text
-  textPrimary: "#FFFFFF",
-  textSecondary: "#E0E0E0",
-  textMuted: "#999999",
+  textPrimary: "#F9FAFB",
+  textSecondary: "#D1D5DB",
+  textMuted: "#9CA3AF",
 
-  // Accent — Electric Purple (the signature "Noctis" brand color)
-  purple: "#8A2BE2",
-  purpleBright: "#A020F0",
-  purpleGlow: "rgba(138, 43, 226, 0.6)",
+  // Accent — Professional Indigo (Neutral)
+  purple: "#4338CA",
+  purpleBright: "#4F46E5",
+  purpleGlow: "rgba(67, 56, 202, 0.4)",
 
-  // Sentiment — Bullish
-  bullish: "#39FF14",          // Neon Green — "growth, surge"
-  bullishGlow: "rgba(57, 255, 20, 0.5)",
-  bullishSoft: "#00CC00",
+  // Sentiment — Bullish (Deep Teal)
+  bullish: "#0D9488",          
+  bullishGlow: "rgba(13, 148, 136, 0.4)",
+  bullishSoft: "#0F766E",
 
-  // Sentiment — Bearish
-  bearish: "#FF0033",          // Striking red — "crash, fear"
-  bearishGlow: "rgba(255, 0, 51, 0.6)",
-  bearishSoft: "#CC0000",
+  // Sentiment — Bearish (Burnt Orange / Warning)
+  bearish: "#EA580C",          
+  bearishGlow: "rgba(234, 88, 12, 0.4)",
+  bearishSoft: "#C2410C",
 
-  // Sentiment — Neutral (Electric Purple)
-  neutral: "#8A2BE2",
-  neutralGlow: "rgba(138, 43, 226, 0.5)",
+  // Sentiment — Neutral
+  neutral: "#4338CA",
+  neutralGlow: "rgba(67, 56, 202, 0.4)",
 
   // Grid & structural
-  gridLine: "#111111",
-  gridDot: "#222222",
+  gridLine: "#1F2937",
+  gridDot: "#374151",
 };
 
 // ─── Sentiment Color Helpers ─────────────────────────────────────────────────
@@ -57,9 +57,10 @@ export const getSentimentGlow = (sentiment: Sentiment): string => {
 
 // ─── Glow Presets ────────────────────────────────────────────────────────────
 export const glowText = (color: string, intensity: "soft" | "medium" | "hard" = "medium") => {
-  const sizes = { soft: "10px", medium: "20px", hard: "40px" };
+  // Softened "Trust" glows: subtle ambient light rather than harsh neon tubes
+  const sizes = { soft: "5px", medium: "10px", hard: "20px" };
   const s = sizes[intensity];
-  return `0 0 ${s} ${color}, 0 0 ${parseInt(s) * 2}px ${color}40`;
+  return `0 0 ${s} ${color}, 0 0 ${parseInt(s) * 1.5}px ${color}30`;
 };
 
 export const glowDrop = (color: string, size = 20) =>

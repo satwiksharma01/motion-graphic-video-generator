@@ -105,25 +105,15 @@ export const LineChart: React.FC<{
           ))}
 
           <svg width={svgWidth} height={svgHeight} viewBox={`0 0 ${svgWidth} ${svgHeight}`} style={{ overflow: "visible" }}>
-            {/* Soft diffuse outer glow layer */}
-            <path
-              d={evolvedPathData}
-              fill="none"
-              stroke={color}
-              strokeWidth={30}
-              strokeLinecap="round"
-              opacity={0.12}
-              style={{ filter: `blur(8px)` }}
-            />
             {/* Main crisp line */}
             <path
               d={evolvedPathData}
               fill="none"
               stroke={color}
-              strokeWidth={6}
+              strokeWidth={5}
               strokeLinecap="round"
               strokeLinejoin="round"
-              style={{ filter: `drop-shadow(0 0 15px ${color}) drop-shadow(0 0 30px ${glow})` }}
+              style={{ filter: `drop-shadow(0 4px 10px ${glow})` }}
             />
           </svg>
 

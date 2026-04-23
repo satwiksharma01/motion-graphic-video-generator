@@ -24,40 +24,39 @@ export const GlossaryOverlay: React.FC<{
       style={{
         justifyContent: "flex-start",
         alignItems: "flex-end", // Top Right
-        padding: "80px",
+        padding: "40px 60px",
         fontFamily,
         pointerEvents: "none",
       }}
     >
       <div style={{
-        width: 600,
-        background: "rgba(0,0,0,0.85)",
-        backdropFilter: "blur(20px)",
+        width: 380,
+        background: "rgba(15, 23, 42, 0.95)",
         border: `2px solid ${COLORS.purple}80`,
-        borderRadius: 16,
-        padding: "30px",
-        boxShadow: `0 0 30px ${COLORS.purple}40`,
-        transform: `translateY(${(1 - pop) * -50}px) scale(${0.9 + pop * 0.1})`,
+        borderRadius: 12,
+        padding: "20px 25px",
+        boxShadow: `0 0 20px ${COLORS.purple}30`,
+        transform: `translateY(${(1 - pop) * -20}px) scale(${0.9 + pop * 0.1})`,
         opacity: pop,
         display: "flex",
         flexDirection: "column",
-        gap: 15,
+        gap: 10,
       }}>
         <div style={{
-          fontSize: 24,
+          fontSize: 16,
           fontWeight: 800,
           color: COLORS.purple,
           textTransform: "uppercase",
           letterSpacing: "0.1em",
           display: "flex",
           alignItems: "center",
-          gap: 10,
+          gap: 8,
         }}>
-          <span style={{ fontSize: 20 }}>💡</span> GLOSSARY: {term}
+          <span style={{ fontSize: 16 }}>💡</span> GLOSSARY: {term}
         </div>
         <p style={{
           margin: 0,
-          fontSize: 32,
+          fontSize: 20,
           lineHeight: 1.4,
           color: COLORS.textPrimary,
           fontWeight: 500,
