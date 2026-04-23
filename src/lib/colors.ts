@@ -1,5 +1,5 @@
 /**
- * NOCTIS DESIGN TOKENS
+ * DESIGN TOKENS
  * "High-Contrast, Glowing Geometric Minimalism"
  * 
  * Single source of truth for all colors, glows, and typography in the engine.

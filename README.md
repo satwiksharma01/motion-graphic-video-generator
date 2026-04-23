@@ -1,6 +1,6 @@
 #  Adaptive Finance Video Engine
 
-Noctis is a high-performance, **Generative Video Engine** built on [Remotion](https://www.remotion.dev/). It transforms raw financial scripts into premium, data-driven motion graphics for social media (Instagram Reels, TikTok, YouTube Shorts) automatically.
+This is a high-performance, **Generative Video Engine** built on [Remotion](https://www.remotion.dev/). It transforms raw financial scripts into premium, data-driven motion graphics for social media (Instagram Reels, TikTok, YouTube Shorts) automatically.
 
 ![Banner](https://img.shields.io/badge/Engine-Generative-blueviolet?style=for-the-badge)
 ![Tech](https://img.shields.io/badge/Powered%20By-Remotion-0070f3?style=for-the-badge)
@@ -10,7 +10,7 @@ Noctis is a high-performance, **Generative Video Engine** built on [Remotion](ht
 
 ## 🚀 The Core Innovation: "One Script, Infinite Visuals"
 
-Unlike traditional video templates, Noctis doesn't use fixed assets. It **understands** your script and builds the video in real-time.
+Unlike traditional video templates, the engine doesn't use fixed assets. It **understands** your script and builds the video in real-time.
 
 ### 🧠 Semantic Intelligence Engine
 - **Auto-Illustrator:** Scans text for keywords (e.g., "bank", "wealth", "crypto") and automatically mounts the relevant 3D-styled holographic icons.
@@ -85,4 +85,4 @@ npm run dev
 This project is for demonstration purposes. Use it to revolutionize your financial storytelling.
 
 ---
-Built with ❤️ by the Noctis Team.
+Built with ❤️.
