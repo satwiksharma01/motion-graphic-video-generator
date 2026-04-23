@@ -1,7 +1,7 @@
-# NOCTIS: Premium Financial Video Engine
+# PREMIUM FINANCIAL VIDEO ENGINE
 ## Complete Product Specifications & Feature Catalog
 
-Noctis is a high-performance, automated video rendering engine built on **Remotion**. It is designed to transform raw financial data and scripts into premium, documentary-style short-form videos. The engine prioritizes trust, clarity, and sophisticated motion graphics over typical "crypto hype" aesthetics.
+The engine is a high-performance, automated video rendering engine built on **Remotion**. It is designed to transform raw financial data and scripts into premium, documentary-style short-form videos. The engine prioritizes trust, clarity, and sophisticated motion graphics over typical "crypto hype" aesthetics.
 
 ---
 
@@ -31,7 +31,7 @@ To maintain a broadcast standard, the engine enforces a strict **Three-Tier Safe
 ---
 
 ## 3. Intelligent Scene Library
-Noctis features a library of intent-aware scene components that dynamically adapt to the data provided in the JSON script.
+The engine features a library of intent-aware scene components that dynamically adapt to the data provided in the JSON script.
 
 *   **Scene Components:**
     *   **Hook Scene:** High-impact hero layout pairing a central 120px icon with primary headlines.
