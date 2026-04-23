@@ -4,6 +4,13 @@ export type BaseScene = {
   sentiment?: "bullish" | "bearish" | "neutral";
   iconName?: string;
   layoutVariant?: "centered" | "split" | "bottom";
+  
+  // New Overlay Properties
+  glossaryTerm?: string;
+  glossaryDefinition?: string;
+  lowerThirdText?: string;
+  lowerThirdStatName?: string;
+  lowerThirdStatValue?: string | number;
 };
 
 export type HookScene = BaseScene & {
@@ -35,4 +42,24 @@ export type CTAScene = BaseScene & {
   buttonText?: string;
 };
 
-export type SceneData = HookScene | CalculationScene | LineChartScene | StepsScene | CTAScene;
+export type BarChartScene = BaseScene & {
+  type: "barchart";
+  dataPoints: { label: string; value: number }[];
+  title?: string;
+};
+
+export type ComparisonScene = BaseScene & {
+  type: "comparison";
+  title?: string;
+  itemA: { label: string; value: string | number; description?: string };
+  itemB: { label: string; value: string | number; description?: string };
+};
+
+export type FormulaScene = BaseScene & {
+  type: "formula";
+  title?: string;
+  equation: string; 
+  variables?: Record<string, string>; 
+};
+
+export type SceneData = HookScene | CalculationScene | LineChartScene | StepsScene | CTAScene | BarChartScene | ComparisonScene | FormulaScene;

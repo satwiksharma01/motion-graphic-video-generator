@@ -1,33 +1,40 @@
 import React from "react";
 import { Audio, staticFile } from "remotion";
+import { Sentiment } from "../lib/analyzer";
 
 /**
- * VideoAudio - Global audio orchestrator
+ * VideoAudio - Global audio orchestrator with Sentiment-Aware Tracks
  * 
  * HOW TO USE:
  * 1. Place your audio files in the `public/` folder.
  * 2. Update the filenames below to match your files.
- * 
- * MOCK MODE (current): Audio components are disabled until real files are placed.
- * Once you add files, uncomment the relevant <Audio> blocks below.
  */
-export const VideoAudio: React.FC = () => {
+export const VideoAudio: React.FC<{ mood?: Sentiment }> = ({ mood = "neutral" }) => {
   // Check if we're in mock mode by trying to use a placeholder
   // Uncomment the blocks below once you have your audio files ready:
 
-  // --- BACKGROUND MUSIC ---
-  // Place your loop music at: public/bg-music.mp3
-  // <Audio src={staticFile("bg-music.mp3")} loop volume={0.2} />
+  // --- BACKGROUND MUSIC (Mood Aware) ---
+  // If bullish: High energy, fast bpm synthwave.
+  // If bearish: Dark, pulsing, tense ambient.
+  // If neutral: Steady, corporate tech background.
+  /*
+  const bgMusicMap: Record<Sentiment, string> = {
+    bullish: "bg-bullish-synth.mp3",
+    bearish: "bg-bearish-pulse.mp3",
+    neutral: "bg-neutral-tech.mp3",
+  };
 
-  // --- TRANSITION HIT SFX ---
-  // Place your hit sound at: public/hit.mp3
-  // <Audio src={staticFile("hit.mp3")} startFrom={0} endAt={30} volume={0.6} />
-
-  // --- WHOOSH SFX ---
-  // Place your whoosh sound at: public/whoosh.mp3
-  // <Audio src={staticFile("whoosh.mp3")} startFrom={0} endAt={15} volume={0.5} />
+  return (
+    <>
+      <Audio src={staticFile(bgMusicMap[mood] || "bg-neutral-tech.mp3")} loop volume={0.15} />
+      
+      {/* Example Transition Hits *\/}
+      {/* <Audio src={staticFile("hit-sub-bass.mp3")} startFrom={0} endAt={30} volume={0.6} /> *\/}
+    </>
+  );
+  */
 
   // Currently returning null so renders don't break.
-  // Replace "null" with the Audio components above when ready.
+  // Uncomment the block above and remove the return null when audio files exist.
   return null;
 };

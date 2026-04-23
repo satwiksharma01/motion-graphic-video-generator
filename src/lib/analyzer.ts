@@ -7,7 +7,7 @@ export interface DerivedMetadata {
 }
 
 const KEYWORD_MAP: Record<string, string> = {
-  // Finance & Crypto
+  // Finance & Crypto Core
   bank: "landmark",
   money: "banknote",
   cash: "banknote",
@@ -32,6 +32,31 @@ const KEYWORD_MAP: Record<string, string> = {
   profit: "trending-up",
   revenue: "dollar-sign",
   loss: "trending-down",
+
+  // Extended Crypto terminology
+  staking: "layers",
+  yield: "sprout",
+  harvest: "tractor",
+  rewards: "gift",
+  validator: "shield-check",
+  node: "server",
+  consensus: "users",
+  mining: "pickaxe",
+  halving: "scissors",
+  whale: "ship",
+  liquidity: "droplet",
+  pool: "waves",
+  dex: "arrow-left-right",
+  cex: "building",
+  tokenomics: "pie-chart",
+  supply: "boxes",
+  inflation: "arrow-up-circle",
+  deflation: "arrow-down-circle",
+  burn: "flame",
+  mint: "hammer",
+  airdrop: "parachute",
+  bridge: "git-merge",
+  wallet: "wallet",
 
   // Institutions & Regulation
   sec: "shield",
