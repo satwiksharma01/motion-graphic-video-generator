@@ -59,7 +59,6 @@ const KEYWORD_MAP: Record<string, string> = {
   wallet: "wallet",
 
   // Educational Finance
-  compound: "repeat",
   diversification: "pie-chart",
   assets: "briefcase",
   equity: "scale",
@@ -68,7 +67,6 @@ const KEYWORD_MAP: Record<string, string> = {
   curriculum: "book-open",
   learn: "graduation-cap",
   study: "book",
-  interest: "percent",
   theory: "brain",
   strategy: "compass",
 

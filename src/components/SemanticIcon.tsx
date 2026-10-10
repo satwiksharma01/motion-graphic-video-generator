@@ -1,7 +1,6 @@
 import React from "react";
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
-import * as Icons from "lucide-react";
-import { LucideIcon } from "lucide-react";
+import { icons, type LucideIcon } from "lucide-react";
 import { getSentimentColor, getSentimentGlow, type Sentiment } from "../lib/colors";
 
 // Re-export for backward compat with other scenes that import from here
@@ -21,7 +20,8 @@ export const SemanticIcon: React.FC<{
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
     .join("");
 
-  const IconComponent = (Icons as Record<string, LucideIcon | undefined>)[formattedName];
+  const iconMap: Record<string, LucideIcon | undefined> = icons;
+  const IconComponent = iconMap[formattedName];
   const color = getSentimentColor(sentiment);
   const glow = getSentimentGlow(sentiment);
 

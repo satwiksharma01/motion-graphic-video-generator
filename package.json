@@ -1,28 +1,31 @@
 {
   "name": "motion-graphic-generator",
   "version": "1.0.0",
-  "description": "My Remotion video",
-  "repository": {},
-  "license": "UNLICENSED",
+  "description": "Render structured finance scripts as vertical motion-graphics videos with React and Remotion.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/satwiksharma01/motion-graphic-video-generator.git"
+  },
+  "license": "MIT",
   "private": true,
   "dependencies": {
-    "@remotion/bundler": "^4.0.447",
-    "@remotion/captions": "^4.0.446",
-    "@remotion/cli": "4.0.445",
-    "@remotion/google-fonts": "^4.0.447",
-    "@remotion/light-leaks": "^4.0.447",
-    "@remotion/paths": "^4.0.446",
-    "@remotion/renderer": "^4.0.447",
-    "@remotion/tailwind-v4": "4.0.445",
-    "@remotion/transitions": "^4.0.447",
+    "@remotion/bundler": "4.0.447",
+    "@remotion/captions": "4.0.447",
+    "@remotion/cli": "4.0.447",
+    "@remotion/google-fonts": "4.0.447",
+    "@remotion/light-leaks": "4.0.447",
+    "@remotion/paths": "4.0.447",
+    "@remotion/renderer": "4.0.447",
+    "@remotion/tailwind-v4": "4.0.447",
+    "@remotion/transitions": "4.0.447",
     "lucide-react": "^1.7.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "remotion": "4.0.445",
+    "remotion": "4.0.447",
     "tailwindcss": "4.0.0"
   },
   "devDependencies": {
-    "@remotion/eslint-config-flat": "4.0.445",
+    "@remotion/eslint-config-flat": "4.0.447",
     "@types/react": "19.2.7",
     "@types/web": "0.0.166",
     "eslint": "9.19.0",
@@ -33,7 +36,8 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "render": "node scripts/parse-and-render.mjs"
   },
   "sideEffects": [
     "*.css"

@@ -46,7 +46,6 @@ export const ProgressTracker: React.FC<{
                 background: isPast || isCurrent ? COLORS.purple : "rgba(255,255,255,0.2)",
                 borderRadius: 3,
                 boxShadow: isCurrent ? `0 0 15px ${COLORS.purple}` : "none",
-                transition: "all 0.3s ease",
               }}
             />
           );

@@ -1,0 +1,26 @@
+{
+  "scenes": [
+    {
+      "type": "linechart",
+      "durationInFrames": 120,
+      "title": "An illustrative series",
+      "dataPoints": [10, 15, 12, 22, 30],
+      "sentiment": "neutral",
+      "intent": "educational",
+      "spokenText": "A chart makes changes easier to see. These are illustrative values."
+    },
+    {
+      "type": "graphiclist",
+      "durationInFrames": 120,
+      "title": "Explain the idea",
+      "items": [
+        { "label": "Show the data", "icon": "bar-chart-3" },
+        { "label": "Explain the context", "icon": "book-open" }
+      ],
+      "sentiment": "neutral",
+      "intent": "educational",
+      "spokenText": "Show the data, then explain the context."
+    }
+  ],
+  "captions": []
+}

@@ -1,5 +1,4 @@
 import React from "react";
-import { Audio, staticFile } from "remotion";
 import { Sentiment } from "../lib/analyzer";
 
 /**
@@ -9,7 +8,7 @@ import { Sentiment } from "../lib/analyzer";
  * 1. Place your audio files in the `public/` folder.
  * 2. Update the filenames below to match your files.
  */
-export const VideoAudio: React.FC<{ mood?: Sentiment }> = ({ mood = "neutral" }) => {
+export const VideoAudio: React.FC<{ mood?: Sentiment }> = () => {
   // Check if we're in mock mode by trying to use a placeholder
   // Uncomment the blocks below once you have your audio files ready:
 

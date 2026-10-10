@@ -1,5 +1,5 @@
 import React from "react";
-import { useCurrentFrame, useVideoConfig, interpolate } from "remotion";
+import { useCurrentFrame, interpolate } from "remotion";
 import { COLORS } from "../lib/colors";
 
 interface Shard {
@@ -19,7 +19,7 @@ const seededRand = (seed: number) => {
   return x - Math.floor(x);
 };
 
-const generateShards = (count: number, color: string): Shard[] => {
+const generateShards = (count: number): Shard[] => {
   return Array.from({ length: count }, (_, i) => ({
     x: 50,
     y: 50,
@@ -42,9 +42,7 @@ export const GeometricShatter: React.FC<{
   duration = 45,
 }) => {
   const frame = useCurrentFrame();
-  const { width, height } = useVideoConfig();
-
-  const shards = generateShards(shardCount, color);
+  const shards = generateShards(shardCount);
 
   const progress = interpolate(frame, [0, duration], [0, 1], {
     extrapolateLeft: "clamp",

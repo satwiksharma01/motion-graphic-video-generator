@@ -1,7 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { COLORS } from "../lib/colors";
-import { GridBackground } from "./GridBackground"; 
 
 export const AbstractGridBackground: React.FC = () => {
   const frame = useCurrentFrame();

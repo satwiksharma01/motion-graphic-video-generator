@@ -1,81 +1,87 @@
-# Premium Financial Video Engine 📈
-### Automated, Sentiment-Aware Motion Graphics for Financial Education.
+# Finance Video Engine
 
-This is a high-performance **Generative Video Engine** built on [Remotion](https://www.remotion.dev/). It transforms raw financial scripts into premium, documentary-style motion graphics for Instagram Reels, TikTok, and YouTube Shorts automatically.
+[![CI](https://github.com/satwiksharma01/motion-graphic-video-generator/actions/workflows/ci.yml/badge.svg)](https://github.com/satwiksharma01/motion-graphic-video-generator/actions/workflows/ci.yml)
 
-![Banner](https://img.shields.io/badge/Identity-Educational-teal?style=for-the-badge)
-![Tech](https://img.shields.io/badge/Engine-Remotion-0070f3?style=for-the-badge)
-![Status](https://img.shields.io/badge/Identity-Trust--Design-blueviolet?style=for-the-badge)
+Render structured scripts as vertical motion-graphics videos with React and Remotion. Scenes include line and bar charts, comparisons, formulas, steps, graphic lists, titles, and closing cards. The composition uses a 1080 × 1920 canvas at 30 fps.
 
----
+![An example line-chart scene with illustrative values](docs/example.png)
 
-## 🚀 Key Innovations
+**Status: experimental.** Scene rendering is implemented. Sentiment and icon selection use keyword rules; they are not a language model or a financial-data service. Narration and background music are not generated or included.
 
-### 🛡️ The "Trust" Design System
-Unlike high-hype crypto tools, this engine uses a calibrated visual language designed for **credibility**:
-- **Professional Palette:** Uses Deep Teal (Growth/Safety) and Burnt Orange (Caution/Warning) to maintain a serious, trustworthy tone.
-- **Calm Typography:** Spring-based animations are tuned for smooth, organic eases rather than aggressive bounces or flashes.
-- **Ambient Texture:** Slow-panning data grids provide depth without distracting from the educational content.
+## Quick start
 
-### 🧩 3-Tier Safe Zone Architecture
-The engine enforces a strict compositional model (1080x1920) to ensure zero UI collision:
-1. **The Header (Top 20%):** Auxiliary info like progress bars and glossary footnotes.
-2. **The Stage (Central 55%):** Primary motion graphics, charts, and icon arrays.
-3. **The Sub Zone (Bottom 25%):** Precise, high-legibility captions that never overlap with the graphics.
+Use Node.js 22 and npm. Install the locked dependencies:
 
-### 🧠 Semantic Intelligence
-- **Intent-Based VFX Suppression:** The system can detect if a script is "Educational" or "Dramatic." Fact-based scenes about market crashes will automatically suppress aggressive effects like screen-shatters.
-- **Auto-Illustrator:** Maps keywords (e.g., "AI", "Risk", "Global") to a premium library of Lucide icons and dynamic themes.
-- **Sentiment-Aware Tracks:** Automatically routes background audio based on the text's mood (Bullish vs. Bearish).
-
----
-
-## 🎬 Scene Component Library
-- **GraphicList:** Staggered arrays of animated Data Cards with semantic icons.
-- **LineChart:** Clean, single-stroke time-series visualization.
-- **BarChart:** High-end comparison graphs for metrics and sector data.
-- **Comparison:** Specialized split-screen for comparative financial analysis.
-- **Formula:** Mathematical equation rendering for logic-heavy explanations.
-- **Hook/CTA:** Polished entry and exit points for maximum viewer retention.
-
----
-
-## 🏁 Getting Started
-
-### Prerequisites
-- Node.js (v18+)
-- FFmpeg (for encoding)
-
-### Installation
 ```bash
 git clone https://github.com/satwiksharma01/motion-graphic-video-generator.git
 cd motion-graphic-video-generator
-npm install
-```
-
-### Rendering a Video
-1. Place a `.json` script file in the `scripts/` directory.
-2. Run the automation pipeline:
-```bash
-node scripts/parse-and-render.mjs
-```
-The final MP4 will be output to the `/out` directory.
-
-### Local Studio View
-```bash
+npm ci
 npm run dev
 ```
 
----
+This opens Remotion Studio. The first render may download Remotion's browser and retrieve fonts, so internet access is needed.
 
-## 📂 Project Structure
-- `/src/scenes/` - Premium UI scenes (GraphicList, Charts, etc.).
-- `/src/lib/analyzer.ts` - The Semantic Engine logic.
-- `/src/lib/colors.ts` - Design tokens and the Trust Palette.
-- `/src/FinanceVideo.tsx` - The main composition orchestrator.
-- `/scripts/` - JSON video configurations.
+## Render the example
 
----
+The included [example script](scripts/example.json) uses illustrative values, a line chart, and a graphic list. Export it as an MP4:
 
-## 📜 License
-This project is for professional financial storytelling. Built with ❤️ for educational clarity.
+```bash
+npx remotion render src/index.ts FinanceVideo out/example.mp4 --props=scripts/example.json
+```
+
+It has no audio or captions. For a quick still frame:
+
+```bash
+npx remotion still src/index.ts FinanceVideo out/example.png --props=scripts/example.json --frame=60
+```
+
+Output files go in `out/`, which is ignored by Git.
+
+## Write a script
+
+Each script contains a `scenes` array. Every scene needs a supported `type` and `durationInFrames`; remaining fields depend on the scene. The [TypeScript scene definitions](src/types/schema.ts) describe the shapes.
+
+| Scene | Main fields |
+|---|---|
+| `hook` | `title` |
+| `linechart` | `dataPoints` (numbers), optional `title` |
+| `barchart` | `dataPoints` (`label`/`value` pairs), optional `title` |
+| `graphiclist` | `items` (`label` and optional `icon`), optional `title` |
+| `steps` | `items` (strings), optional `title` |
+| `calculation` | `amount`, `result` |
+| `comparison` | `itemA`, `itemB`, optional `title` |
+| `formula` | `equation`, optional `variables` and `title` |
+| `cta` | Optional `subtitle`, `buttonText` |
+
+Optional scene fields include `spokenText`, `sentiment`, `intent`, and glossary/lower-third text. `spokenText` supplies text for captions; it does not synthesize speech. Set `captions: []` in direct render props to omit captions rather than loading the Studio's default subtitle file.
+
+## Batch rendering and captions
+
+```bash
+npm run render
+```
+
+The batch command renders every JSON script in `scripts/`. It derives captions from scene text using a fixed **350 ms per word** across the combined text. These timestamps are placeholders: they are not aligned to narration or individual scene boundaries. Review them before using a video with speech. The example script has no captions when rendered directly; the batch command creates estimated captions for it, like the other scripts.
+
+`VideoAudio.tsx` is currently a silent placeholder. Add audio assets you have permission to use and implement the audio layer before expecting a soundtrack.
+
+## Checks
+
+```bash
+npm run lint      # ESLint and TypeScript
+npm run build     # Bundle the composition
+```
+
+CI installs from the lockfile, runs both checks, and renders a real example frame. This checks that the project can compile and render; it does not measure full-video quality or caption accuracy.
+
+## Layout
+
+- `src/scenes/`: scene components.
+- `src/FinanceVideo.tsx`: composition and transitions.
+- `src/Root.tsx`: frame rate, canvas, and duration calculation.
+- `src/lib/analyzer.ts`: keyword rules for sentiment and icons.
+- `scripts/`: script examples and the batch renderer.
+
+## License
+
+[MIT](LICENSE) for the project code. Remotion and other dependencies have their own license terms; the project license does not replace those terms.

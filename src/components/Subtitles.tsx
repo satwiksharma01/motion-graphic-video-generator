@@ -47,7 +47,6 @@ const CaptionPage: React.FC<{ page: TikTokPage }> = ({ page }) => {
               key={token.fromMs}
               style={{
                 color: isActive ? HIGHLIGHT_COLOR : "white",
-                transition: "color 0.05s ease-out",
                 whiteSpace: "pre-wrap",
                 // Glow on active word
                 textShadow: isActive ? `0 0 30px ${HIGHLIGHT_COLOR}80` : "none",

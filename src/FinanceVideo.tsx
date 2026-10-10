@@ -26,6 +26,7 @@ import { LowerThirds } from "./components/LowerThirds";
 import { ProgressTracker } from "./components/ProgressTracker";
 import { analyzeSentiment, analyzeIcon, getSceneSeed, deriveLayout } from "./lib/analyzer";
 import { COLORS } from "./lib/colors";
+import type { SceneData } from "./types/schema";
 
 export type FinanceVideoProps = {
   scenes: SceneData[];

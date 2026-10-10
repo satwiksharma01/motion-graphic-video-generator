@@ -30,7 +30,6 @@ export const Calculation: React.FC<{
 
   // Value color and glow
   const color = COLORS.purple;
-  const glow = COLORS.purpleGlow;
 
   return (
     <AbsoluteFill

@@ -107,7 +107,8 @@ export const LineChart: React.FC<{
           <svg width={svgWidth} height={svgHeight} viewBox={`0 0 ${svgWidth} ${svgHeight}`} style={{ overflow: "visible" }}>
             {/* Main crisp line */}
             <path
-              d={evolvedPathData}
+              d={path}
+              {...evolvedPathData}
               fill="none"
               stroke={color}
               strokeWidth={5}

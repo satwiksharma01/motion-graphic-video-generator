@@ -10,7 +10,7 @@ export const ImpactText: React.FC<{
   fontSize?: number;
   sentiment?: Sentiment;
   mode?: "impact" | "calm";
-}> = ({ text, glowColor = COLORS.purple, delay = 0, fontSize = 110, sentiment, mode = "calm" }) => {
+}> = ({ text, glowColor = COLORS.purple, delay = 0, fontSize = 110, mode = "calm" }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 

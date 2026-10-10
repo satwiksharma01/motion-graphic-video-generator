@@ -63,4 +63,10 @@ export type FormulaScene = BaseScene & {
   variables?: Record<string, string>; 
 };
 
-export type SceneData = HookScene | CalculationScene | LineChartScene | StepsScene | CTAScene | BarChartScene | ComparisonScene | FormulaScene;
+export type GraphicListScene = BaseScene & {
+  type: "graphiclist";
+  title?: string;
+  items: { label: string; icon?: string }[];
+};
+
+export type SceneData = HookScene | CalculationScene | LineChartScene | StepsScene | CTAScene | BarChartScene | ComparisonScene | FormulaScene | GraphicListScene;
