@@ -1,13 +1,15 @@
 import React from "react";
 import { Composition, CalculateMetadataFunction } from "remotion";
 import { FinanceVideo, FinanceVideoProps } from "./FinanceVideo";
+import { validateScenes } from "./lib/validate-input";
 
 const calculateMetadata: CalculateMetadataFunction<FinanceVideoProps> = async ({
   props,
   defaultProps,
 }) => {
   const fps = 30; // Matches Composition fps
-  const scenes = props.scenes || defaultProps.scenes;
+  const scenes = props.scenes === undefined ? defaultProps.scenes : props.scenes;
+  validateScenes(scenes);
   const transitionDuration = Math.round(0.5 * fps);
 
   let totalDuration = 0;

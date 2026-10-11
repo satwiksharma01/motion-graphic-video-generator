@@ -3,6 +3,7 @@ import path from "path";
 import { bundle } from "@remotion/bundler";
 import { renderMedia, selectComposition } from "@remotion/renderer";
 import { fileURLToPath } from "url";
+import { validateScenes } from "../src/lib/validate-input.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -46,6 +47,21 @@ async function renderVideos() {
     return;
   }
 
+  // Validate the whole batch before spending time bundling or rendering.
+  const scripts = files.map((file) => {
+    try {
+      const data = JSON.parse(fs.readFileSync(path.join(scriptsDir, file), "utf-8"));
+      validateScenes(data?.scenes);
+      return { file, data };
+    } catch (error) {
+      throw new Error(`${file}: ${error.message}`);
+    }
+  });
+  if (process.argv.includes("--check")) {
+    console.log(`Validated ${scripts.length} scripts; no browser or render needed.`);
+    return;
+  }
+
   console.log("Bundling video project...");
   const bundleLocation = await bundle({
     entryPoint: path.resolve(__dirname, "..", "src", "index.ts"),
@@ -55,22 +71,8 @@ async function renderVideos() {
   const outDir = path.resolve(__dirname, "..", "out");
   if (!fs.existsSync(outDir)) fs.mkdirSync(outDir);
 
-  for (const file of files) {
+  for (const { file, data: parsedData } of scripts) {
     console.log(`\nProcessing ${file}...`);
-    const filePath = path.join(scriptsDir, file);
-    
-    let parsedData;
-    try {
-      parsedData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-    } catch(e) {
-      console.error(`Skipping ${file}: Invalid JSON.`);
-      continue;
-    }
-
-    if (!parsedData.scenes || !Array.isArray(parsedData.scenes)) {
-      console.error(`Skipping ${file}: Must contain a 'scenes' array.`);
-      continue;
-    }
     
     const spokenTexts = parsedData.scenes.map(extractSpokenText);
     const captions = generateSubtitlesArray(spokenTexts);

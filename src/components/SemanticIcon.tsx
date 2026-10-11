@@ -1,6 +1,6 @@
 import React from "react";
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { icons, type LucideIcon } from "lucide-react";
+import { resolveIcon } from "../lib/icons";
 import { getSentimentColor, getSentimentGlow, type Sentiment } from "../lib/colors";
 
 // Re-export for backward compat with other scenes that import from here
@@ -14,14 +14,7 @@ export const SemanticIcon: React.FC<{
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Convert kebab-case or string to PascalCase (e.g., alert-triangle -> AlertTriangle)
-  const formattedName = iconName
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-    .join("");
-
-  const iconMap: Record<string, LucideIcon | undefined> = icons;
-  const IconComponent = iconMap[formattedName];
+  const IconComponent = resolveIcon(iconName);
   const color = getSentimentColor(sentiment);
   const glow = getSentimentGlow(sentiment);
 
@@ -37,8 +30,6 @@ export const SemanticIcon: React.FC<{
 
   // Pulsing inner glow
   const pulseIntensity = 0.6 + Math.sin(frame * 0.06) * 0.4;
-
-  if (!IconComponent) return null;
 
   return (
     <div

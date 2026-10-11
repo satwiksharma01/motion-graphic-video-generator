@@ -16,7 +16,7 @@ export const BarChart: React.FC<{
   const svgWidth = 800;
   const svgHeight = 400;
 
-  const maxVal = Math.max(...dataPoints.map(d => d.value)) * 1.1;
+  const maxVal = Math.max(1, ...dataPoints.map(d => d.value)) * 1.1;
 
   const color = getSentimentColor(sentiment);
   const glow = getSentimentGlow(sentiment);

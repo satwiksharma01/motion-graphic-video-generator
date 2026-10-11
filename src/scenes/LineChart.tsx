@@ -3,6 +3,7 @@ import { AbsoluteFill, spring, useCurrentFrame, useVideoConfig } from "remotion"
 import { evolvePath } from "@remotion/paths";
 import { getSentimentColor, getSentimentGlow, COLORS } from "../lib/colors";
 import { fontFamily } from "../lib/fonts";
+import { lineChartPoints } from "../lib/chart-scale";
 
 type Sentiment = "bullish" | "bearish" | "neutral";
 
@@ -17,16 +18,7 @@ export const LineChart: React.FC<{
   const svgWidth = 800;
   const svgHeight = 500;
 
-  // Determine scaling
-  const minVal = Math.min(...dataPoints) * 0.95; 
-  const maxVal = Math.max(...dataPoints) * 1.05;
-  const range = maxVal - minVal;
-
-  const points = dataPoints.map((val, i) => {
-    const x = (i / (dataPoints.length - 1)) * svgWidth;
-    const y = svgHeight - ((val - minVal) / range) * svgHeight;
-    return { x, y };
-  });
+  const points = lineChartPoints(dataPoints, svgWidth, svgHeight);
 
   const path = `M ${points[0].x} ${points[0].y} ` + 
     points.slice(1).map(p => `L ${p.x} ${p.y}`).join(" ");

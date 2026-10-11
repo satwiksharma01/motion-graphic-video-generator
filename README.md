@@ -21,9 +21,11 @@ npm run dev
 
 This opens Remotion Studio. The first render may download Remotion's browser and retrieve fonts, so internet access is needed.
 
+[Engineering decisions](docs/ENGINEERING.md) · [Feature status](FEATURES.md) · [Contributing](CONTRIBUTING.md)
+
 ## Render the example
 
-The included [example script](scripts/example.json) uses illustrative values, a line chart, and a graphic list. Export it as an MP4:
+The included [example script](scripts/example.json) uses illustrative values, a line chart, and a graphic list. [Watch the rendered sample](docs/example.mp4) or export it yourself:
 
 ```bash
 npx remotion render src/index.ts FinanceVideo out/example.mp4 --props=scripts/example.json
@@ -40,6 +42,8 @@ Output files go in `out/`, which is ignored by Git.
 ## Write a script
 
 Each script contains a `scenes` array. Every scene needs a supported `type` and `durationInFrames`; remaining fields depend on the scene. The [TypeScript scene definitions](src/types/schema.ts) describe the shapes.
+
+Input is checked before rendering. Scenes need an integer duration of at least 30 frames, allowing the built-in transitions to fit. A line chart needs at least two finite values; bar charts accept non-negative finite values, including zero. Invalid input reports the scene index and field instead of silently dropping the scene. The one-second scene minimum is a current renderer constraint.
 
 | Scene | Main fields |
 |---|---|
@@ -61,6 +65,14 @@ Optional scene fields include `spokenText`, `sentiment`, `intent`, and glossary/
 npm run render
 ```
 
+Check every script without opening a browser or rendering:
+
+```bash
+npm run validate
+```
+
+The whole batch is validated before bundling; an invalid script fails the command with its filename. Fix it before retrying.
+
 The batch command renders every JSON script in `scripts/`. It derives captions from scene text using a fixed **350 ms per word** across the combined text. These timestamps are placeholders: they are not aligned to narration or individual scene boundaries. Review them before using a video with speech. The example script has no captions when rendered directly; the batch command creates estimated captions for it, like the other scripts.
 
 `VideoAudio.tsx` is currently a silent placeholder. Add audio assets you have permission to use and implement the audio layer before expecting a soundtrack.
@@ -68,11 +80,13 @@ The batch command renders every JSON script in `scripts/`. It derives captions f
 ## Checks
 
 ```bash
+npm test          # Input contracts and chart-coordinate regressions
+npm run validate  # Check every committed example script
 npm run lint      # ESLint and TypeScript
 npm run build     # Bundle the composition
 ```
 
-CI installs from the lockfile, runs both checks, and renders a real example frame. This checks that the project can compile and render; it does not measure full-video quality or caption accuracy.
+CI installs from the lockfile, runs these checks, and renders a real example frame. This checks input handling, chart edge cases, compilation and rendering; it does not measure full-video quality or caption accuracy. The Node commands use Node 22's built-in TypeScript stripping; older Node releases are unsupported.
 
 ## Layout
 

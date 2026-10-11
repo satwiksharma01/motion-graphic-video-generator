@@ -37,7 +37,9 @@
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
-    "render": "node scripts/parse-and-render.mjs"
+    "render": "node --experimental-strip-types scripts/parse-and-render.mjs",
+    "validate": "node --experimental-strip-types scripts/parse-and-render.mjs --check",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs"
   },
   "sideEffects": [
     "*.css"
